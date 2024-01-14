@@ -28,20 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.welcomeImgBtn = new System.Windows.Forms.Button();
             this.welcomeImgButton = new System.Windows.Forms.Button();
             this.takeOutTab = new System.Windows.Forms.TabPage();
             this.toGoBtn = new System.Windows.Forms.Button();
             this.forHereBtn = new System.Windows.Forms.Button();
             this.menuTab = new System.Windows.Forms.TabPage();
+            this.vlaBtn = new System.Windows.Forms.Button();
+            this.latBtn = new System.Windows.Forms.Button();
+            this.ameBtn = new System.Windows.Forms.Button();
             this.cartTab = new System.Windows.Forms.TabPage();
             this.payTab = new System.Windows.Forms.TabPage();
             this.AdminTab = new System.Windows.Forms.TabPage();
+            this.orderListTb = new System.Windows.Forms.TextBox();
+            this.goToBegin = new System.Windows.Forms.Button();
+            this.menu_cart = new System.Windows.Forms.Button();
+            this.cart_orderlist = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
+            this.menuTab.SuspendLayout();
+            this.cartTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -52,34 +64,45 @@
             this.tabControl.Controls.Add(this.cartTab);
             this.tabControl.Controls.Add(this.payTab);
             this.tabControl.Controls.Add(this.AdminTab);
-            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1920, 1080);
+            this.tabControl.Size = new System.Drawing.Size(1064, 681);
             this.tabControl.TabIndex = 0;
             // 
             // welcomeTab
             // 
+            this.welcomeTab.Controls.Add(this.welcomeImgBtn);
             this.welcomeTab.Controls.Add(this.welcomeImgButton);
             this.welcomeTab.Location = new System.Drawing.Point(4, 22);
             this.welcomeTab.Name = "welcomeTab";
             this.welcomeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.welcomeTab.Size = new System.Drawing.Size(1912, 1054);
+            this.welcomeTab.Size = new System.Drawing.Size(1056, 655);
             this.welcomeTab.TabIndex = 0;
             this.welcomeTab.Text = "웰컴";
             this.welcomeTab.UseVisualStyleBackColor = true;
             // 
+            // welcomeImgBtn
+            // 
+            this.welcomeImgBtn.Location = new System.Drawing.Point(498, 264);
+            this.welcomeImgBtn.Name = "welcomeImgBtn";
+            this.welcomeImgBtn.Size = new System.Drawing.Size(75, 23);
+            this.welcomeImgBtn.TabIndex = 0;
+            this.welcomeImgBtn.Text = "button";
+            this.welcomeImgBtn.Visible = false;
+            // 
             // welcomeImgButton
             // 
+            this.welcomeImgButton.BackgroundImage = global::coffeeshop.Properties.Resources.americano;
             this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeImgButton.Image = ((System.Drawing.Image)(resources.GetObject("welcomeImgButton.Image")));
-            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.welcomeImgButton.Location = new System.Drawing.Point(3, 3);
             this.welcomeImgButton.Name = "welcomeImgButton";
-            this.welcomeImgButton.Size = new System.Drawing.Size(1906, 1048);
+            this.welcomeImgButton.Size = new System.Drawing.Size(1050, 649);
             this.welcomeImgButton.TabIndex = 0;
             this.welcomeImgButton.UseVisualStyleBackColor = true;
-            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgButton_Click);
+            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgBtn_Click);
             // 
             // takeOutTab
             // 
@@ -88,23 +111,24 @@
             this.takeOutTab.Location = new System.Drawing.Point(4, 22);
             this.takeOutTab.Name = "takeOutTab";
             this.takeOutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.takeOutTab.Size = new System.Drawing.Size(1912, 1054);
+            this.takeOutTab.Size = new System.Drawing.Size(1056, 655);
             this.takeOutTab.TabIndex = 1;
             this.takeOutTab.Text = "테이크아웃/인";
             this.takeOutTab.UseVisualStyleBackColor = true;
             // 
             // toGoBtn
             // 
-            this.toGoBtn.Location = new System.Drawing.Point(1017, 305);
+            this.toGoBtn.Location = new System.Drawing.Point(591, 80);
             this.toGoBtn.Name = "toGoBtn";
             this.toGoBtn.Size = new System.Drawing.Size(418, 401);
             this.toGoBtn.TabIndex = 1;
             this.toGoBtn.Text = "포장하기";
             this.toGoBtn.UseVisualStyleBackColor = true;
+            this.toGoBtn.Click += new System.EventHandler(this.toGoBtn_Click);
             // 
             // forHereBtn
             // 
-            this.forHereBtn.Location = new System.Drawing.Point(378, 305);
+            this.forHereBtn.Location = new System.Drawing.Point(100, 80);
             this.forHereBtn.Name = "forHereBtn";
             this.forHereBtn.Size = new System.Drawing.Size(418, 401);
             this.forHereBtn.TabIndex = 0;
@@ -114,18 +138,60 @@
             // 
             // menuTab
             // 
+            this.menuTab.AutoScroll = true;
+            this.menuTab.Controls.Add(this.menu_cart);
+            this.menuTab.Controls.Add(this.goToBegin);
+            this.menuTab.Controls.Add(this.orderListTb);
+            this.menuTab.Controls.Add(this.vlaBtn);
+            this.menuTab.Controls.Add(this.latBtn);
+            this.menuTab.Controls.Add(this.ameBtn);
             this.menuTab.Location = new System.Drawing.Point(4, 22);
             this.menuTab.Name = "menuTab";
-            this.menuTab.Size = new System.Drawing.Size(1912, 1054);
+            this.menuTab.Size = new System.Drawing.Size(1056, 655);
             this.menuTab.TabIndex = 2;
             this.menuTab.Text = "메뉴";
             this.menuTab.UseVisualStyleBackColor = true;
             // 
+            // vlaBtn
+            // 
+            this.vlaBtn.Image = global::coffeeshop.Properties.Resources.vanilalatte;
+            this.vlaBtn.Location = new System.Drawing.Point(846, 100);
+            this.vlaBtn.Name = "vlaBtn";
+            this.vlaBtn.Size = new System.Drawing.Size(276, 276);
+            this.vlaBtn.TabIndex = 2;
+            this.vlaBtn.Text = "button3";
+            this.vlaBtn.UseVisualStyleBackColor = true;
+            // 
+            // latBtn
+            // 
+            this.latBtn.Image = global::coffeeshop.Properties.Resources.latte;
+            this.latBtn.Location = new System.Drawing.Point(489, 100);
+            this.latBtn.Name = "latBtn";
+            this.latBtn.Size = new System.Drawing.Size(276, 276);
+            this.latBtn.TabIndex = 1;
+            this.latBtn.Text = "button2";
+            this.latBtn.UseVisualStyleBackColor = true;
+            this.latBtn.Click += new System.EventHandler(this.latBtn_Click);
+            // 
+            // ameBtn
+            // 
+            this.ameBtn.Image = global::coffeeshop.Properties.Resources.americano;
+            this.ameBtn.Location = new System.Drawing.Point(100, 100);
+            this.ameBtn.Name = "ameBtn";
+            this.ameBtn.Size = new System.Drawing.Size(276, 276);
+            this.ameBtn.TabIndex = 0;
+            this.ameBtn.Text = "button1";
+            this.ameBtn.UseVisualStyleBackColor = true;
+            this.ameBtn.Click += new System.EventHandler(this.ameBtn_Click);
+            // 
             // cartTab
             // 
+            this.cartTab.Controls.Add(this.numericUpDown1);
+            this.cartTab.Controls.Add(this.textBox1);
+            this.cartTab.Controls.Add(this.cart_orderlist);
             this.cartTab.Location = new System.Drawing.Point(4, 22);
             this.cartTab.Name = "cartTab";
-            this.cartTab.Size = new System.Drawing.Size(1912, 1054);
+            this.cartTab.Size = new System.Drawing.Size(1056, 655);
             this.cartTab.TabIndex = 3;
             this.cartTab.Text = "장바구니";
             this.cartTab.UseVisualStyleBackColor = true;
@@ -134,7 +200,7 @@
             // 
             this.payTab.Location = new System.Drawing.Point(4, 22);
             this.payTab.Name = "payTab";
-            this.payTab.Size = new System.Drawing.Size(1912, 1054);
+            this.payTab.Size = new System.Drawing.Size(1056, 655);
             this.payTab.TabIndex = 4;
             this.payTab.Text = "결제하기";
             this.payTab.UseVisualStyleBackColor = true;
@@ -143,22 +209,85 @@
             // 
             this.AdminTab.Location = new System.Drawing.Point(4, 22);
             this.AdminTab.Name = "AdminTab";
-            this.AdminTab.Size = new System.Drawing.Size(1912, 1054);
+            this.AdminTab.Size = new System.Drawing.Size(1056, 655);
             this.AdminTab.TabIndex = 5;
             this.AdminTab.Text = "관리자모드";
             this.AdminTab.UseVisualStyleBackColor = true;
+            // 
+            // orderListTb
+            // 
+            this.orderListTb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.orderListTb.Location = new System.Drawing.Point(60, 495);
+            this.orderListTb.Multiline = true;
+            this.orderListTb.Name = "orderListTb";
+            this.orderListTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.orderListTb.Size = new System.Drawing.Size(800, 100);
+            this.orderListTb.TabIndex = 3;
+            // 
+            // goToBegin
+            // 
+            this.goToBegin.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.goToBegin.Location = new System.Drawing.Point(902, 440);
+            this.goToBegin.Name = "goToBegin";
+            this.goToBegin.Size = new System.Drawing.Size(177, 73);
+            this.goToBegin.TabIndex = 1;
+            this.goToBegin.Text = "처음으로";
+            this.goToBegin.UseVisualStyleBackColor = true;
+            this.goToBegin.Click += new System.EventHandler(this.goToBegin_Click);
+            // 
+            // menu_cart
+            // 
+            this.menu_cart.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.menu_cart.Location = new System.Drawing.Point(902, 533);
+            this.menu_cart.Name = "menu_cart";
+            this.menu_cart.Size = new System.Drawing.Size(177, 73);
+            this.menu_cart.TabIndex = 4;
+            this.menu_cart.Text = "장바구니";
+            this.menu_cart.UseVisualStyleBackColor = true;
+            this.menu_cart.Click += new System.EventHandler(this.menu_cart_Click);
+            // 
+            // cart_orderlist
+            // 
+            this.cart_orderlist.AutoSize = true;
+            this.cart_orderlist.Location = new System.Drawing.Point(8, 8);
+            this.cart_orderlist.Name = "cart_orderlist";
+            this.cart_orderlist.Size = new System.Drawing.Size(53, 12);
+            this.cart_orderlist.TabIndex = 0;
+            this.cart_orderlist.Text = "주문내역";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(16, 50);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(391, 271);
+            this.textBox1.TabIndex = 1;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.numericUpDown1.Location = new System.Drawing.Point(431, 50);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 45);
+            this.numericUpDown1.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1064, 681);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "유동 커피숍";
             this.tabControl.ResumeLayout(false);
             this.welcomeTab.ResumeLayout(false);
             this.takeOutTab.ResumeLayout(false);
+            this.menuTab.ResumeLayout(false);
+            this.menuTab.PerformLayout();
+            this.cartTab.ResumeLayout(false);
+            this.cartTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,6 +304,16 @@
         private System.Windows.Forms.Button welcomeImgButton;
         private System.Windows.Forms.Button forHereBtn;
         private System.Windows.Forms.Button toGoBtn;
+        private System.Windows.Forms.Button ameBtn;
+        private System.Windows.Forms.Button vlaBtn;
+        private System.Windows.Forms.Button latBtn;
+        private System.Windows.Forms.Button welcomeImgBtn;
+        private System.Windows.Forms.TextBox orderListTb;
+        private System.Windows.Forms.Button goToBegin;
+        private System.Windows.Forms.Button menu_cart;
+        private System.Windows.Forms.Label cart_orderlist;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
