@@ -15,14 +15,13 @@ namespace coffeeshop
     public partial class menuSelected : Form
     {
         public OrderData subOrder;
-        public menuSelected(MenuID mid)
+        public menuSelected(MenuID mid, int orderID)
         {
-            InitializeComponent();
-            subOrder = new OrderData();
-
+            InitializeComponent();            
             nameLabel.Location = new Point(Width * 1 / 10, Height * 1 / 5 - 60);
             pictureBox1.Location = new Point(Width * 1 / 10, Height * 1 / 5);
-            subOrder = new OrderData();
+            subOrder = new OrderData(orderID, flag_increase_seed.No);//데이터 전달용 
+            
             subOrder.count = 0;
             switch (mid) { 
                 case MenuID.Ame:                   

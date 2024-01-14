@@ -36,24 +36,28 @@
             this.toGoBtn = new System.Windows.Forms.Button();
             this.forHereBtn = new System.Windows.Forms.Button();
             this.menuTab = new System.Windows.Forms.TabPage();
+            this.menuListLb = new System.Windows.Forms.Label();
+            this.menu_cart = new System.Windows.Forms.Button();
+            this.goToBegin = new System.Windows.Forms.Button();
+            this.orderListTb = new System.Windows.Forms.TextBox();
             this.vlaBtn = new System.Windows.Forms.Button();
             this.latBtn = new System.Windows.Forms.Button();
             this.ameBtn = new System.Windows.Forms.Button();
             this.cartTab = new System.Windows.Forms.TabPage();
-            this.payTab = new System.Windows.Forms.TabPage();
-            this.AdminTab = new System.Windows.Forms.TabPage();
-            this.orderListTb = new System.Windows.Forms.TextBox();
-            this.goToBegin = new System.Windows.Forms.Button();
-            this.menu_cart = new System.Windows.Forms.Button();
-            this.cart_orderlist = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.paymentBtn = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cart_orderlist = new System.Windows.Forms.Label();
+            this.payTab = new System.Windows.Forms.TabPage();
+            this.pay_priceLb = new System.Windows.Forms.Label();
+            this.AdminTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
             this.menuTab.SuspendLayout();
             this.cartTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.payTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -139,6 +143,7 @@
             // menuTab
             // 
             this.menuTab.AutoScroll = true;
+            this.menuTab.Controls.Add(this.menuListLb);
             this.menuTab.Controls.Add(this.menu_cart);
             this.menuTab.Controls.Add(this.goToBegin);
             this.menuTab.Controls.Add(this.orderListTb);
@@ -151,6 +156,47 @@
             this.menuTab.TabIndex = 2;
             this.menuTab.Text = "메뉴";
             this.menuTab.UseVisualStyleBackColor = true;
+            // 
+            // menuListLb
+            // 
+            this.menuListLb.AutoSize = true;
+            this.menuListLb.Location = new System.Drawing.Point(68, 403);
+            this.menuListLb.Name = "menuListLb";
+            this.menuListLb.Size = new System.Drawing.Size(38, 12);
+            this.menuListLb.TabIndex = 5;
+            this.menuListLb.Text = "label1";
+            // 
+            // menu_cart
+            // 
+            this.menu_cart.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.menu_cart.Location = new System.Drawing.Point(902, 533);
+            this.menu_cart.Name = "menu_cart";
+            this.menu_cart.Size = new System.Drawing.Size(177, 73);
+            this.menu_cart.TabIndex = 4;
+            this.menu_cart.Text = "장바구니";
+            this.menu_cart.UseVisualStyleBackColor = true;
+            this.menu_cart.Click += new System.EventHandler(this.menu_cart_Click);
+            // 
+            // goToBegin
+            // 
+            this.goToBegin.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.goToBegin.Location = new System.Drawing.Point(902, 440);
+            this.goToBegin.Name = "goToBegin";
+            this.goToBegin.Size = new System.Drawing.Size(177, 73);
+            this.goToBegin.TabIndex = 1;
+            this.goToBegin.Text = "처음으로";
+            this.goToBegin.UseVisualStyleBackColor = true;
+            this.goToBegin.Click += new System.EventHandler(this.goToBegin_Click);
+            // 
+            // orderListTb
+            // 
+            this.orderListTb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.orderListTb.Location = new System.Drawing.Point(60, 495);
+            this.orderListTb.Multiline = true;
+            this.orderListTb.Name = "orderListTb";
+            this.orderListTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.orderListTb.Size = new System.Drawing.Size(800, 100);
+            this.orderListTb.TabIndex = 3;
             // 
             // vlaBtn
             // 
@@ -186,6 +232,7 @@
             // 
             // cartTab
             // 
+            this.cartTab.Controls.Add(this.paymentBtn);
             this.cartTab.Controls.Add(this.numericUpDown1);
             this.cartTab.Controls.Add(this.textBox1);
             this.cartTab.Controls.Add(this.cart_orderlist);
@@ -196,64 +243,23 @@
             this.cartTab.Text = "장바구니";
             this.cartTab.UseVisualStyleBackColor = true;
             // 
-            // payTab
+            // paymentBtn
             // 
-            this.payTab.Location = new System.Drawing.Point(4, 22);
-            this.payTab.Name = "payTab";
-            this.payTab.Size = new System.Drawing.Size(1056, 655);
-            this.payTab.TabIndex = 4;
-            this.payTab.Text = "결제하기";
-            this.payTab.UseVisualStyleBackColor = true;
+            this.paymentBtn.Location = new System.Drawing.Point(800, 500);
+            this.paymentBtn.Name = "paymentBtn";
+            this.paymentBtn.Size = new System.Drawing.Size(75, 23);
+            this.paymentBtn.TabIndex = 3;
+            this.paymentBtn.Text = "결제하기";
+            this.paymentBtn.UseVisualStyleBackColor = true;
+            this.paymentBtn.Click += new System.EventHandler(this.paymentBtn_Click);
             // 
-            // AdminTab
+            // numericUpDown1
             // 
-            this.AdminTab.Location = new System.Drawing.Point(4, 22);
-            this.AdminTab.Name = "AdminTab";
-            this.AdminTab.Size = new System.Drawing.Size(1056, 655);
-            this.AdminTab.TabIndex = 5;
-            this.AdminTab.Text = "관리자모드";
-            this.AdminTab.UseVisualStyleBackColor = true;
-            // 
-            // orderListTb
-            // 
-            this.orderListTb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.orderListTb.Location = new System.Drawing.Point(60, 495);
-            this.orderListTb.Multiline = true;
-            this.orderListTb.Name = "orderListTb";
-            this.orderListTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.orderListTb.Size = new System.Drawing.Size(800, 100);
-            this.orderListTb.TabIndex = 3;
-            // 
-            // goToBegin
-            // 
-            this.goToBegin.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.goToBegin.Location = new System.Drawing.Point(902, 440);
-            this.goToBegin.Name = "goToBegin";
-            this.goToBegin.Size = new System.Drawing.Size(177, 73);
-            this.goToBegin.TabIndex = 1;
-            this.goToBegin.Text = "처음으로";
-            this.goToBegin.UseVisualStyleBackColor = true;
-            this.goToBegin.Click += new System.EventHandler(this.goToBegin_Click);
-            // 
-            // menu_cart
-            // 
-            this.menu_cart.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.menu_cart.Location = new System.Drawing.Point(902, 533);
-            this.menu_cart.Name = "menu_cart";
-            this.menu_cart.Size = new System.Drawing.Size(177, 73);
-            this.menu_cart.TabIndex = 4;
-            this.menu_cart.Text = "장바구니";
-            this.menu_cart.UseVisualStyleBackColor = true;
-            this.menu_cart.Click += new System.EventHandler(this.menu_cart_Click);
-            // 
-            // cart_orderlist
-            // 
-            this.cart_orderlist.AutoSize = true;
-            this.cart_orderlist.Location = new System.Drawing.Point(8, 8);
-            this.cart_orderlist.Name = "cart_orderlist";
-            this.cart_orderlist.Size = new System.Drawing.Size(53, 12);
-            this.cart_orderlist.TabIndex = 0;
-            this.cart_orderlist.Text = "주문내역";
+            this.numericUpDown1.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.numericUpDown1.Location = new System.Drawing.Point(431, 50);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 45);
+            this.numericUpDown1.TabIndex = 2;
             // 
             // textBox1
             // 
@@ -264,13 +270,43 @@
             this.textBox1.Size = new System.Drawing.Size(391, 271);
             this.textBox1.TabIndex = 1;
             // 
-            // numericUpDown1
+            // cart_orderlist
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.numericUpDown1.Location = new System.Drawing.Point(431, 50);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(50, 45);
-            this.numericUpDown1.TabIndex = 2;
+            this.cart_orderlist.AutoSize = true;
+            this.cart_orderlist.Location = new System.Drawing.Point(8, 8);
+            this.cart_orderlist.Name = "cart_orderlist";
+            this.cart_orderlist.Size = new System.Drawing.Size(53, 12);
+            this.cart_orderlist.TabIndex = 0;
+            this.cart_orderlist.Text = "주문내역";
+            // 
+            // payTab
+            // 
+            this.payTab.Controls.Add(this.pay_priceLb);
+            this.payTab.Location = new System.Drawing.Point(4, 22);
+            this.payTab.Name = "payTab";
+            this.payTab.Size = new System.Drawing.Size(1056, 655);
+            this.payTab.TabIndex = 4;
+            this.payTab.Text = "결제하기";
+            this.payTab.UseVisualStyleBackColor = true;
+            // 
+            // pay_priceLb
+            // 
+            this.pay_priceLb.AutoSize = true;
+            this.pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pay_priceLb.Location = new System.Drawing.Point(20, 250);
+            this.pay_priceLb.Name = "pay_priceLb";
+            this.pay_priceLb.Size = new System.Drawing.Size(113, 37);
+            this.pay_priceLb.TabIndex = 0;
+            this.pay_priceLb.Text = "label1";
+            // 
+            // AdminTab
+            // 
+            this.AdminTab.Location = new System.Drawing.Point(4, 22);
+            this.AdminTab.Name = "AdminTab";
+            this.AdminTab.Size = new System.Drawing.Size(1056, 655);
+            this.AdminTab.TabIndex = 5;
+            this.AdminTab.Text = "관리자모드";
+            this.AdminTab.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -288,6 +324,8 @@
             this.cartTab.ResumeLayout(false);
             this.cartTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.payTab.ResumeLayout(false);
+            this.payTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -314,6 +352,9 @@
         private System.Windows.Forms.Label cart_orderlist;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label menuListLb;
+        private System.Windows.Forms.Label pay_priceLb;
+        private System.Windows.Forms.Button paymentBtn;
     }
 }
 

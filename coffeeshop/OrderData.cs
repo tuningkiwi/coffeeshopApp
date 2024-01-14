@@ -6,25 +6,43 @@ using System.Threading.Tasks;
 
 namespace coffeeshop
 {
+    public enum flag_increase_seed{ Yes, No };
     public class OrderData
     {
-        private static int s_orderIdSeed = 0;//주문번호
-        public int orderId;// { get; }
-        public string take;// { get; set; }//테이크아웃 인
-        public string menuName; //{ get; set; }//메뉴이름
-        public string hotCold;// { get; set; }// 핫콜드
-        public string size;// { get; set; }//사이즈
-        public int count;//갯수 
+        public int orderID { get; set; }
+        private static int s_orderDetailIDSeed = 0;
+        public int orderDetailID { get; }  //주문상세id번호     
+        public string take { get; set; }//테이크아웃 인
+        public string menuName{ get; set; }//메뉴이름
+        public string hotCold { get; set; }// 핫콜드
+        public string size { get; set; }//사이즈
+        public int count = 0;//갯수 
 
-       public OrderData()
+        //public int orderDetailID;// { get; }
+        //public string take;// { get; set; }//테이크아웃 인
+        //public string menuName; //{ get; set; }//메뉴이름
+        //public string hotCold;// { get; set; }// 핫콜드
+        //public string size;// { get; set; }//사이즈
+        //public int count;//갯수 
+
+        public OrderData(int orderid, flag_increase_seed answer)
         {
-            orderId = s_orderIdSeed;
-            s_orderIdSeed++;
-            take = string.Empty;
-            menuName = string.Empty;  
-            hotCold = string.Empty;
-            size = string.Empty;
+            orderID = orderid;            
+            if (answer == flag_increase_seed.Yes)
+            {
+                orderDetailID = s_orderDetailIDSeed;
+                s_orderDetailIDSeed++;
+            }
+            else if (answer == flag_increase_seed.No) {
+                orderDetailID = s_orderDetailIDSeed - 1;
+            }            
+            take = "";
+            menuName = "";  
+            hotCold = "";
+            size = "";
             count = 0;
         }
+
+        public OrderData Copy() { return (OrderData) this.MemberwiseClone(); }
     }
 }
