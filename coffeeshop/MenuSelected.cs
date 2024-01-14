@@ -22,7 +22,7 @@ namespace coffeeshop
             pictureBox1.Location = new Point(Width * 1 / 10, Height * 1 / 5);
             subOrder = new OrderData(orderID, flag_increase_seed.No);//데이터 전달용 
             
-            subOrder.count = 0;
+            subOrder.quantity = 0;
             switch (mid) { 
                 case MenuID.Ame:                   
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.americano;
@@ -65,17 +65,17 @@ namespace coffeeshop
 
         private void add_Click(object sender, EventArgs e)
         {
-            subOrder.count++;
-            countLabel.Text = subOrder.count.ToString();    
+            subOrder.quantity++;
+            countLabel.Text = subOrder.quantity.ToString();    
         }
 
         private void subtract_Click(object sender, EventArgs e)
         {
-            subOrder.count--;
-            if(subOrder.count <= 0) {
-                subOrder.count = 0;
+            subOrder.quantity--;
+            if(subOrder.quantity <= 0) {
+                subOrder.quantity = 0;
             }
-            countLabel.Text = subOrder.count.ToString();
+            countLabel.Text = subOrder.quantity.ToString();
         }
 
         private void HOT_Click(object sender, EventArgs e)
@@ -109,13 +109,19 @@ namespace coffeeshop
 
         private void cart_menuSelected_Click(object sender, EventArgs e)
         {
-            if (subOrder.hotCold == string.Empty || subOrder.size == string.Empty || subOrder.count == 0) {
+            if (subOrder.hotCold == string.Empty || subOrder.size == string.Empty || subOrder.quantity == 0) {
                 MessageBox.Show("HOT/COLD, 사이즈, 갯수 모두가 선택되야 합니다");
             } else {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             
+        }
+
+        private void cancel_menuSelected_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

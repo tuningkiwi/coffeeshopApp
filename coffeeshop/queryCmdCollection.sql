@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[completed_order_list] (
     [take_out_in]     NCHAR (10)    NULL,
 	[menu_id]       INT NULL,
     [hot_cold]        NCHAR (10)    NULL,
-    [quantity]           INT           NULL,
+    [quantity] INT NULL,
     [payment_sign]    IMAGE         NULL
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE [dbo].[current_order_list] (
     [menu_name]       NVARCHAR (30) NULL,
     [hot_cold]        NCHAR (10)    NULL,
     [size]            NCHAR (10)    NULL,
-    [quantity]           INT           NULL,
+    [quantity] INT NULL,
     [payment_sign]    IMAGE         NULL
 );
 
@@ -30,6 +30,16 @@ CREATE TABLE [dbo].[item_price] (
     [menu_name] NVARCHAR (30) NULL,
     [size]      NCHAR (10)    NULL,
     [price]     INT           NULL
+);
+
+CREATE TABLE [dbo].[waiting_order_list] (
+    [order_id]        INT           NULL,
+    [order_detail_id] INT           NULL,
+    [take_out_in]     NCHAR (10)    NULL,
+	[menu_id]       INT NULL,
+    [hot_cold]        NCHAR (10)    NULL,
+    [quantity] INT NULL,
+    [payment_sign]    IMAGE         NULL
 );
 
 
@@ -47,15 +57,7 @@ INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES 
 
 
 
-CREATE TABLE [dbo].[waiting_order_list] (
-    [order_id]        INT           NULL,
-    [order_detail_id] INT           NULL,
-    [take_out_in]     NCHAR (10)    NULL,
-	[menu_id]       INT NULL,
-    [hot_cold]        NCHAR (10)    NULL,
-    [quantity]           INT           NULL,
-    [payment_sign]    IMAGE         NULL
-);
+
 
 /*주문자가 주문 세부사항을 선택완료 할 때마다 Current_order_list에 insert*/
 /*데이터 삽입 current_order_list*/
@@ -88,6 +90,11 @@ on cur.menu_name = it.menu_name and cur.size = it.size
 select sum(it.price*cur.quantity) as total_price from current_order_list cur INNER JOIN item_price it
 on cur.menu_name = it.menu_name and cur.size = it.size 
 
+
+/*주문 총 잔수 금액 */
+select sum(quantity) as total_count from current_order_list
+
+
 /*선택 항목 수량 UPDATE*/
 update current_order_list set quantity=7 where order_detail_id=3
 select * from current_order_list
@@ -119,6 +126,15 @@ insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[me
 delete from current_order_list;
 
 
+-------------
+/*item_price 제외하고 삭제 */
+
+delete from completed_order_list;
+delete from current_order_list;
+delete from waiting_order_list;
+
+
+
 /***************
    관리자모드 
 ****************/
@@ -129,3 +145,34 @@ delete from current_order_list;
 
 
 
+
+            ////ROW, COLUMN 크기 자동 조정 
+            //// Resize the master DataGridView columns to fit the newly loaded data.
+            //dataGridView1.AutoResizeColumns();
+            //dataGridView1.AutoResizeRows();
+            //// Configure the details DataGridView so that its columns automatically
+            //// adjust their widths when the data changes.
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //dataGridView1.AutoSizeRowsMode =DataGridViewAutoSizeRowsMode.AllCells;
+
+            //사용자 조정, 자동 조정 close 
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.ColumnHeadersHeightSizeMode =
+                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.RowHeadersWidthSizeMode =
+                DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView1.ReadOnly = true;
+
+            dataGridView1.Columns[2].Width = 200;
+
+            //for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            //{
+            //    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            //    dataGridView1.Columns[i].Resizable = DataGridViewTriState.False;
+            //    dataGridView1.Columns[i].ReadOnly = true;
+            //    dataGridView1.Columns[i].Width = 200;
+            //}
+
+            //dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

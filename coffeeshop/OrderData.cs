@@ -11,12 +11,12 @@ namespace coffeeshop
     {
         public int orderID { get; set; }
         private static int s_orderDetailIDSeed = 0;
-        public int orderDetailID { get; }  //주문상세id번호     
+        public int orderDetailID { get; set; }  //주문상세id번호     
         public string take { get; set; }//테이크아웃 인
         public string menuName{ get; set; }//메뉴이름
         public string hotCold { get; set; }// 핫콜드
         public string size { get; set; }//사이즈
-        public int count = 0;//갯수 
+        public int quantity { get; set; }//갯수 
 
         //public int orderDetailID;// { get; }
         //public string take;// { get; set; }//테이크아웃 인
@@ -40,7 +40,7 @@ namespace coffeeshop
             menuName = "";  
             hotCold = "";
             size = "";
-            count = 0;
+            quantity = 0;
         }
 
         public OrderData Copy() { return (OrderData) this.MemberwiseClone(); }
