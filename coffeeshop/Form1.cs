@@ -246,6 +246,7 @@ namespace coffeeshop
 
         }
 
+        //현재 사용 안함 
         private StringBuilder saveDataInTable(string sqlcmd)
         {
             StringBuilder sb = new StringBuilder();
@@ -278,6 +279,16 @@ namespace coffeeshop
 
             orderListShow(sender, e);
 
+            List<String> result = printTotal();
+            totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
+            totalCountLb.Text = $"총{result[0]}개/   {result[1]}원";
+
+
+        }
+
+
+        //총 주문 갯수 및 결제(예정) 금액 출력 
+        private List<String> printTotal() {
             sqlCommand.CommandText = "select sum(quantity) as total_count from current_order_list";
             SqlDataReader rdr = sqlCommand.ExecuteReader();
             String strCount = "", strPrice = "";
@@ -297,22 +308,29 @@ namespace coffeeshop
             }
             rdr2.Close();
 
-            //주문 총 잔수/ 총액 
-            totalCountLb.Text = $"총{strCount}개/   {strPrice}원";
+            List < String > result = new List<String>();
+            result.Add(strCount);
+            result.Add(strPrice);
 
+            return result;
+
+            //주문 총 잔수/ 총액 
+            
         }
 
-
+        /*************************************/
+        //           결제하기                //
+        /*************************************/
         //장바구니창에서 결제하기 클릭시 수행 
         private void paymentBtn_Click(object sender, EventArgs e)
         {
             tabControl.SelectedTab = payTab;
 
-            string sqlcmd = "SELECT * FROM item_price";
-            StringBuilder sb = saveDataInTable(sqlcmd);
-
+            printTotal();
+            List<String> result = printTotal();
             pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F);
-            pay_priceLb.Text = sb.ToString();
+            pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";
+
         }
 
         /*************************************/
@@ -358,9 +376,6 @@ namespace coffeeshop
                 for (int i = 0; i < sr.FieldCount; i++)
                 {
                     ColName.Add(sr.GetName(i));
-                    //추가되는 컬럼의 프로그래밍상 접근 이름, 표시되는 이름
-                    //데이터뷰에 컬럼 생성
-                    //dataView.Columns.Add(colName, colName);
                 }
 
 
@@ -369,23 +384,6 @@ namespace coffeeshop
                     object[] oarr = new object[sr.FieldCount];
                     sr.GetValues(oarr);
                     result.Add(oarr);
-
-                    //string str = "";
-                    //int nRow = dataView.Rows.Add(); //row1개 추가, row가 몇개 생성됐는지 return     
-                    //for (int i = 0; i < sr.FieldCount; i++)
-                    //{
-                    //    //sr로부터 i번째 col 의 값을 가져오고 
-                    //    object obj = sr.GetValue(i);
-                    //    //if (i == 0) str = $"{obj}";
-                    //    if (i == 0) str = obj.ToString();
-                    //    else
-                    //    {
-                    //        str = ","+ obj.ToString();
-                    //    }
-
-                    //    //dataview 어디에 저장할지 설정
-                    //    dataView.Rows[nRow].Cells[i].Value = obj;
-                    //}
                 }
                 sr.Close();
 
@@ -508,9 +506,6 @@ namespace coffeeshop
                 dataGridView1.Rows[nRow].Cells[5].Value = row[4];
             }
 
-            
-
-
         }
 
         void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -534,8 +529,6 @@ namespace coffeeshop
                 sqlCommand.CommandText = quantityAdd;
                 sqlCommand.ExecuteNonQuery();
 
-                orderListShow(sender, e);
-
             }//- 버튼 눌렀을 때 update 
             else if (e.ColumnIndex == dataGridView1.Columns["Sub"].Index) {
                 string _m_name = (string)dataGridView1[0, e.RowIndex].Value;
@@ -553,8 +546,6 @@ namespace coffeeshop
                 sqlCommand.CommandText = quantitySub;
                 sqlCommand.ExecuteNonQuery();
 
-                orderListShow(sender, e);
-
             }
             else if (e.ColumnIndex == dataGridView1.Columns["Del"].Index)
             {
@@ -570,9 +561,13 @@ namespace coffeeshop
                 sqlCommand.CommandText = quantityDel;
                 sqlCommand.ExecuteNonQuery();
 
-                orderListShow(sender, e);
-
             }
+
+            orderListShow(sender, e);
+
+            List<String> result = printTotal();
+            totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
+            totalCountLb.Text = $"총{result[0]}개/   {result[1]}원";
 
 
 

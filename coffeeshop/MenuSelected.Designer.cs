@@ -155,7 +155,6 @@ namespace coffeeshop
             // 
             // cart_menuSelected
             // 
-            this.cart_menuSelected.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.cart_menuSelected.Location = new System.Drawing.Point(879, 572);
             this.cart_menuSelected.Margin = new System.Windows.Forms.Padding(4);
             this.cart_menuSelected.Name = "cart_menuSelected";
@@ -167,7 +166,6 @@ namespace coffeeshop
             // 
             // cancel_menuSelected
             // 
-            this.cancel_menuSelected.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel_menuSelected.Location = new System.Drawing.Point(663, 572);
             this.cancel_menuSelected.Margin = new System.Windows.Forms.Padding(4);
             this.cancel_menuSelected.Name = "cancel_menuSelected";
