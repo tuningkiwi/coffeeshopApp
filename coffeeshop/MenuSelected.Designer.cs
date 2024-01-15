@@ -50,7 +50,7 @@ namespace coffeeshop
             this.pictureBox1.ImageLocation = "";
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(41, 192);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(394, 414);
             this.pictureBox1.TabIndex = 0;
@@ -72,7 +72,7 @@ namespace coffeeshop
             // 
             this.HOT.BackColor = System.Drawing.Color.LightCoral;
             this.HOT.Location = new System.Drawing.Point(536, 218);
-            this.HOT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HOT.Margin = new System.Windows.Forms.Padding(4);
             this.HOT.Name = "HOT";
             this.HOT.Size = new System.Drawing.Size(147, 62);
             this.HOT.TabIndex = 2;
@@ -84,7 +84,7 @@ namespace coffeeshop
             // 
             this.COLD.BackColor = System.Drawing.Color.LightBlue;
             this.COLD.Location = new System.Drawing.Point(719, 218);
-            this.COLD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.COLD.Margin = new System.Windows.Forms.Padding(4);
             this.COLD.Name = "COLD";
             this.COLD.Size = new System.Drawing.Size(147, 62);
             this.COLD.TabIndex = 3;
@@ -96,7 +96,7 @@ namespace coffeeshop
             // 
             this.LARGE.BackColor = System.Drawing.Color.Gainsboro;
             this.LARGE.Location = new System.Drawing.Point(719, 322);
-            this.LARGE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LARGE.Margin = new System.Windows.Forms.Padding(4);
             this.LARGE.Name = "LARGE";
             this.LARGE.Size = new System.Drawing.Size(147, 62);
             this.LARGE.TabIndex = 5;
@@ -108,7 +108,7 @@ namespace coffeeshop
             // 
             this.SMALL.BackColor = System.Drawing.Color.Gainsboro;
             this.SMALL.Location = new System.Drawing.Point(536, 322);
-            this.SMALL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SMALL.Margin = new System.Windows.Forms.Padding(4);
             this.SMALL.Name = "SMALL";
             this.SMALL.Size = new System.Drawing.Size(147, 62);
             this.SMALL.TabIndex = 4;
@@ -121,7 +121,7 @@ namespace coffeeshop
             this.add.BackColor = System.Drawing.Color.Gainsboro;
             this.add.Font = new System.Drawing.Font("D2Coding", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.add.Location = new System.Drawing.Point(794, 434);
-            this.add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add.Margin = new System.Windows.Forms.Padding(4);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(71, 62);
             this.add.TabIndex = 7;
@@ -134,7 +134,7 @@ namespace coffeeshop
             this.subtract.BackColor = System.Drawing.Color.Gainsboro;
             this.subtract.Font = new System.Drawing.Font("D2Coding", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.subtract.Location = new System.Drawing.Point(536, 434);
-            this.subtract.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.subtract.Margin = new System.Windows.Forms.Padding(4);
             this.subtract.Name = "subtract";
             this.subtract.Size = new System.Drawing.Size(74, 62);
             this.subtract.TabIndex = 6;
@@ -155,8 +155,9 @@ namespace coffeeshop
             // 
             // cart_menuSelected
             // 
+            this.cart_menuSelected.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.cart_menuSelected.Location = new System.Drawing.Point(879, 572);
-            this.cart_menuSelected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cart_menuSelected.Margin = new System.Windows.Forms.Padding(4);
             this.cart_menuSelected.Name = "cart_menuSelected";
             this.cart_menuSelected.Size = new System.Drawing.Size(180, 34);
             this.cart_menuSelected.TabIndex = 9;
@@ -166,8 +167,9 @@ namespace coffeeshop
             // 
             // cancel_menuSelected
             // 
+            this.cancel_menuSelected.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel_menuSelected.Location = new System.Drawing.Point(663, 572);
-            this.cancel_menuSelected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancel_menuSelected.Margin = new System.Windows.Forms.Padding(4);
             this.cancel_menuSelected.Name = "cancel_menuSelected";
             this.cancel_menuSelected.Size = new System.Drawing.Size(180, 34);
             this.cancel_menuSelected.TabIndex = 10;
@@ -191,7 +193,7 @@ namespace coffeeshop
             this.Controls.Add(this.HOT);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "menuSelected";
             this.Text = "메뉴세부사항";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

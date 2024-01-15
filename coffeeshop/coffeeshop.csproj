@@ -90,7 +90,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="resource\payQR.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="resource\americano.jpg" />
   </ItemGroup>
@@ -108,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resource\vanilalatte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\receipt.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

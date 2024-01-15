@@ -29,32 +29,41 @@ namespace coffeeshop
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.americano;
                     //this.pictureBox1.ImageLocation = "0,0"; 이거 하면 안됨
                     nameLabel.Text = "아메리카노";
-                    subOrder.menuName = "AMERICANO";
+                    subOrder.menuName = "americano";
                     break;
                 case MenuID.Lat:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.latte;
                     nameLabel.Text = "카페라떼";
-                    subOrder.menuName = "CAFFE_LATTE";
+                    subOrder.menuName = "caffe_latte";
                     break;
                 case MenuID.Van:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.vanilalatte;
                     nameLabel.Text = "바닐라라떼";
-                    subOrder.menuName = "VANILLA_LATTE";
+                    subOrder.menuName = "vanila_latte";
                     break; 
                 case MenuID.Str:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.strawberrylatte;
                     nameLabel.Text = "딸기퐁당라떼";
-                    subOrder.menuName = "STRAWBERRY_LATTE";
+                    subOrder.menuName = "strawberry_latte";
+                    HOT.Visible = false;
+                    COLD.BackColor = Color.DodgerBlue;
+                    subOrder.hotCold = "COLD";
                     break;
                 case MenuID.Blu:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.bluberryyogurt;
                     nameLabel.Text = "블루베리요거트";
-                    subOrder.menuName = "BLUEBERRY_YOGURT";
+                    subOrder.menuName = "blueberry_yogurt";
+                    HOT.Visible = false;
+                    COLD.BackColor = Color.DodgerBlue;
+                    subOrder.hotCold = "COLD";
                     break;
                 case MenuID.Roy:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.roaylmilktea;
                     nameLabel.Text = "로열밀크티쉐이크";
-                    subOrder.menuName = "ROYAL_MILKTEY_SHAKE";
+                    subOrder.menuName = "royalmilktea";
+                    HOT.Visible = false;
+                    COLD.BackColor = Color.DodgerBlue;
+                    subOrder.hotCold = "COLD";
                     break;
                 default:
                     break;
@@ -112,6 +121,7 @@ namespace coffeeshop
 
         private void cart_menuSelected_Click(object sender, EventArgs e)
         {
+            //필수 선택항목 선택 안했을 경우 
             if (subOrder.hotCold == string.Empty || subOrder.size == string.Empty || subOrder.quantity == 0) {
                 MessageBox.Show("HOT/COLD, 사이즈, 갯수 모두가 선택되야 합니다");
             } else {
