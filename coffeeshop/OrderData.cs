@@ -34,7 +34,7 @@ namespace coffeeshop
                 s_orderDetailIDSeed++;
             }
             else if (answer == flag_increase_seed.No) {
-                orderDetailID = s_orderDetailIDSeed - 1;
+                orderDetailID = s_orderDetailIDSeed;
             }            
             take = "";
             menuName = "";  

@@ -169,6 +169,7 @@ namespace coffeeshop
 
                 //orderData = newOrder 데이터 내용 (*orderDetailID 제외 )일일이 복사 
                 OrderData newOrder = new OrderData(s_orderIDSeed, flag_increase_seed.Yes);
+                //label5.Text += $"{newOrder.orderDetailID}\r\n";
                 newOrder.take = orderData.take;
                 newOrder.menuName = orderData.menuName;
                 newOrder.hotCold = orderData.hotCold;
@@ -460,12 +461,13 @@ namespace coffeeshop
                 dataGridView1.Columns[i].Resizable = DataGridViewTriState.False;
                 dataGridView1.Columns[i].ReadOnly = true;
 
-                if (i == 0) { dataGridView1.Columns[i].Width = 200; }
-                else if (i == 4 || i == 6) {
+                //메뉴이름 너비 
+                if (i == 0) { dataGridView1.Columns[i].Width = 300; }
+                else if (i == 4 || i == 6) { //버튼 위치 너비 
                     dataGridView1.Columns[i].Width = 70;
                 }
                 else
-                {
+                {//나머지 크기 
                     dataGridView1.Columns[i].Width = 150;
                 }
                 //dataGridView1.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

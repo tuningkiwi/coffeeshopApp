@@ -63,6 +63,7 @@
             this.latBtn = new System.Windows.Forms.Button();
             this.ameBtn = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
@@ -142,6 +143,7 @@
             // menuTab
             // 
             this.menuTab.AutoScroll = true;
+            this.menuTab.Controls.Add(this.label5);
             this.menuTab.Controls.Add(this.label4);
             this.menuTab.Controls.Add(this.label3);
             this.menuTab.Controls.Add(this.label2);
@@ -492,6 +494,15 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1104, 626);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 18);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "label5";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -558,6 +569,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button pay_CancelBtn;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label label5;
     }
 }
 
