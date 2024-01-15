@@ -31,10 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
+            this.welcomeImgButton = new System.Windows.Forms.Button();
             this.takeOutTab = new System.Windows.Forms.TabPage();
             this.toGoBtn = new System.Windows.Forms.Button();
             this.forHereBtn = new System.Windows.Forms.Button();
             this.menuTab = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,26 +46,25 @@
             this.menuListLb = new System.Windows.Forms.Label();
             this.menu_cart = new System.Windows.Forms.Button();
             this.goToBegin = new System.Windows.Forms.Button();
-            this.cartTab = new System.Windows.Forms.TabPage();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cart_cancelBtn = new System.Windows.Forms.Button();
-            this.paymentBtn = new System.Windows.Forms.Button();
-            this.totalCountLb = new System.Windows.Forms.Label();
-            this.payTab = new System.Windows.Forms.TabPage();
-            this.pay_priceLb = new System.Windows.Forms.Label();
-            this.AdminTab = new System.Windows.Forms.TabPage();
-            this.pay_CancelBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.welcomeImgButton = new System.Windows.Forms.Button();
             this.blueyogurtBtn = new System.Windows.Forms.Button();
             this.royalBtn = new System.Windows.Forms.Button();
             this.strawberrylatteBtn = new System.Windows.Forms.Button();
             this.vlaBtn = new System.Windows.Forms.Button();
             this.latBtn = new System.Windows.Forms.Button();
             this.ameBtn = new System.Windows.Forms.Button();
+            this.cartTab = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cart_cancelBtn = new System.Windows.Forms.Button();
+            this.paymentBtn = new System.Windows.Forms.Button();
+            this.totalCountLb = new System.Windows.Forms.Label();
+            this.payTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pay_CancelBtn = new System.Windows.Forms.Button();
+            this.pay_priceLb = new System.Windows.Forms.Label();
+            this.AdminTab = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
@@ -104,6 +105,20 @@
             this.welcomeTab.TabIndex = 0;
             this.welcomeTab.Text = "웰컴";
             this.welcomeTab.UseVisualStyleBackColor = true;
+            // 
+            // welcomeImgButton
+            // 
+            this.welcomeImgButton.AutoSize = true;
+            this.welcomeImgButton.BackgroundImage = global::coffeeshop.Properties.Resources.americano;
+            this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.welcomeImgButton.Location = new System.Drawing.Point(4, 4);
+            this.welcomeImgButton.Margin = new System.Windows.Forms.Padding(4);
+            this.welcomeImgButton.Name = "welcomeImgButton";
+            this.welcomeImgButton.Size = new System.Drawing.Size(1882, 984);
+            this.welcomeImgButton.TabIndex = 0;
+            this.welcomeImgButton.UseVisualStyleBackColor = true;
+            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgBtn_Click);
             // 
             // takeOutTab
             // 
@@ -166,6 +181,15 @@
             this.menuTab.TabIndex = 2;
             this.menuTab.Text = "메뉴";
             this.menuTab.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1104, 626);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 18);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "label5";
             // 
             // label4
             // 
@@ -264,152 +288,6 @@
             this.goToBegin.UseVisualStyleBackColor = false;
             this.goToBegin.Click += new System.EventHandler(this.goToBegin_Click);
             // 
-            // cartTab
-            // 
-            this.cartTab.Controls.Add(this.splitContainer1);
-            this.cartTab.Location = new System.Drawing.Point(4, 28);
-            this.cartTab.Margin = new System.Windows.Forms.Padding(4);
-            this.cartTab.Name = "cartTab";
-            this.cartTab.Size = new System.Drawing.Size(1890, 992);
-            this.cartTab.TabIndex = 3;
-            this.cartTab.Text = "장바구니";
-            this.cartTab.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.cart_cancelBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.paymentBtn);
-            this.splitContainer1.Panel2.Controls.Add(this.totalCountLb);
-            this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(1890, 992);
-            this.splitContainer1.SplitterDistance = 600;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(1890, 600);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // cart_cancelBtn
-            // 
-            this.cart_cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cart_cancelBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cart_cancelBtn.Location = new System.Drawing.Point(1490, 132);
-            this.cart_cancelBtn.Name = "cart_cancelBtn";
-            this.cart_cancelBtn.Size = new System.Drawing.Size(283, 90);
-            this.cart_cancelBtn.TabIndex = 3;
-            this.cart_cancelBtn.Text = "취소하기";
-            this.cart_cancelBtn.UseVisualStyleBackColor = true;
-            this.cart_cancelBtn.Click += new System.EventHandler(this.cart_cancelBtn_Click);
-            // 
-            // paymentBtn
-            // 
-            this.paymentBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.paymentBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.paymentBtn.Location = new System.Drawing.Point(1490, 16);
-            this.paymentBtn.Name = "paymentBtn";
-            this.paymentBtn.Size = new System.Drawing.Size(283, 90);
-            this.paymentBtn.TabIndex = 2;
-            this.paymentBtn.Text = "결제하기";
-            this.paymentBtn.UseVisualStyleBackColor = true;
-            this.paymentBtn.Click += new System.EventHandler(this.paymentBtn_Click);
-            // 
-            // totalCountLb
-            // 
-            this.totalCountLb.AutoSize = true;
-            this.totalCountLb.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.totalCountLb.Location = new System.Drawing.Point(1083, 104);
-            this.totalCountLb.Name = "totalCountLb";
-            this.totalCountLb.Size = new System.Drawing.Size(336, 36);
-            this.totalCountLb.TabIndex = 1;
-            this.totalCountLb.Text = "총     0개/총     0원";
-            // 
-            // payTab
-            // 
-            this.payTab.Controls.Add(this.button1);
-            this.payTab.Controls.Add(this.pay_CancelBtn);
-            this.payTab.Controls.Add(this.pay_priceLb);
-            this.payTab.Location = new System.Drawing.Point(4, 28);
-            this.payTab.Margin = new System.Windows.Forms.Padding(4);
-            this.payTab.Name = "payTab";
-            this.payTab.Size = new System.Drawing.Size(1890, 992);
-            this.payTab.TabIndex = 4;
-            this.payTab.Text = "결제하기";
-            this.payTab.UseVisualStyleBackColor = true;
-            // 
-            // pay_priceLb
-            // 
-            this.pay_priceLb.AutoSize = true;
-            this.pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pay_priceLb.Location = new System.Drawing.Point(1075, 503);
-            this.pay_priceLb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.pay_priceLb.Name = "pay_priceLb";
-            this.pay_priceLb.Size = new System.Drawing.Size(264, 55);
-            this.pay_priceLb.TabIndex = 0;
-            this.pay_priceLb.Text = "총액 표시 ";
-            // 
-            // AdminTab
-            // 
-            this.AdminTab.Location = new System.Drawing.Point(4, 28);
-            this.AdminTab.Margin = new System.Windows.Forms.Padding(4);
-            this.AdminTab.Name = "AdminTab";
-            this.AdminTab.Size = new System.Drawing.Size(1890, 992);
-            this.AdminTab.TabIndex = 5;
-            this.AdminTab.Text = "관리자모드";
-            this.AdminTab.UseVisualStyleBackColor = true;
-            // 
-            // pay_CancelBtn
-            // 
-            this.pay_CancelBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pay_CancelBtn.Location = new System.Drawing.Point(526, 785);
-            this.pay_CancelBtn.Name = "pay_CancelBtn";
-            this.pay_CancelBtn.Size = new System.Drawing.Size(299, 91);
-            this.pay_CancelBtn.TabIndex = 1;
-            this.pay_CancelBtn.Text = "취소하기";
-            this.pay_CancelBtn.UseVisualStyleBackColor = true;
-            this.pay_CancelBtn.Click += new System.EventHandler(this.pay_CancelBtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(987, 785);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(299, 91);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "결제하기";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // welcomeImgButton
-            // 
-            this.welcomeImgButton.AutoSize = true;
-            this.welcomeImgButton.BackgroundImage = global::coffeeshop.Properties.Resources.americano;
-            this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.welcomeImgButton.Location = new System.Drawing.Point(4, 4);
-            this.welcomeImgButton.Margin = new System.Windows.Forms.Padding(4);
-            this.welcomeImgButton.Name = "welcomeImgButton";
-            this.welcomeImgButton.Size = new System.Drawing.Size(1882, 984);
-            this.welcomeImgButton.TabIndex = 0;
-            this.welcomeImgButton.UseVisualStyleBackColor = true;
-            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgBtn_Click);
-            // 
             // blueyogurtBtn
             // 
             this.blueyogurtBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -488,20 +366,154 @@
             this.ameBtn.UseVisualStyleBackColor = true;
             this.ameBtn.Click += new System.EventHandler(this.ameBtn_Click);
             // 
+            // cartTab
+            // 
+            this.cartTab.Controls.Add(this.splitContainer1);
+            this.cartTab.Location = new System.Drawing.Point(4, 28);
+            this.cartTab.Margin = new System.Windows.Forms.Padding(4);
+            this.cartTab.Name = "cartTab";
+            this.cartTab.Size = new System.Drawing.Size(1890, 992);
+            this.cartTab.TabIndex = 3;
+            this.cartTab.Text = "장바구니";
+            this.cartTab.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Panel2.Controls.Add(this.cart_cancelBtn);
+            this.splitContainer1.Panel2.Controls.Add(this.paymentBtn);
+            this.splitContainer1.Panel2.Controls.Add(this.totalCountLb);
+            this.splitContainer1.Panel2MinSize = 200;
+            this.splitContainer1.Size = new System.Drawing.Size(1890, 992);
+            this.splitContainer1.SplitterDistance = 600;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(1890, 600);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(257, 88);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 18);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "label6";
+            // 
+            // cart_cancelBtn
+            // 
+            this.cart_cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cart_cancelBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cart_cancelBtn.Location = new System.Drawing.Point(1490, 132);
+            this.cart_cancelBtn.Name = "cart_cancelBtn";
+            this.cart_cancelBtn.Size = new System.Drawing.Size(283, 90);
+            this.cart_cancelBtn.TabIndex = 3;
+            this.cart_cancelBtn.Text = "취소하기";
+            this.cart_cancelBtn.UseVisualStyleBackColor = true;
+            this.cart_cancelBtn.Click += new System.EventHandler(this.cart_cancelBtn_Click);
+            // 
+            // paymentBtn
+            // 
+            this.paymentBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.paymentBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.paymentBtn.Location = new System.Drawing.Point(1490, 16);
+            this.paymentBtn.Name = "paymentBtn";
+            this.paymentBtn.Size = new System.Drawing.Size(283, 90);
+            this.paymentBtn.TabIndex = 2;
+            this.paymentBtn.Text = "결제하기";
+            this.paymentBtn.UseVisualStyleBackColor = true;
+            this.paymentBtn.Click += new System.EventHandler(this.paymentBtn_Click);
+            // 
+            // totalCountLb
+            // 
+            this.totalCountLb.AutoSize = true;
+            this.totalCountLb.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.totalCountLb.Location = new System.Drawing.Point(1083, 104);
+            this.totalCountLb.Name = "totalCountLb";
+            this.totalCountLb.Size = new System.Drawing.Size(336, 36);
+            this.totalCountLb.TabIndex = 1;
+            this.totalCountLb.Text = "총     0개/총     0원";
+            // 
+            // payTab
+            // 
+            this.payTab.Controls.Add(this.button1);
+            this.payTab.Controls.Add(this.pay_CancelBtn);
+            this.payTab.Controls.Add(this.pay_priceLb);
+            this.payTab.Location = new System.Drawing.Point(4, 28);
+            this.payTab.Margin = new System.Windows.Forms.Padding(4);
+            this.payTab.Name = "payTab";
+            this.payTab.Size = new System.Drawing.Size(1890, 992);
+            this.payTab.TabIndex = 4;
+            this.payTab.Text = "결제하기";
+            this.payTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Location = new System.Drawing.Point(987, 785);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(299, 91);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "결제하기";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // pay_CancelBtn
+            // 
+            this.pay_CancelBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pay_CancelBtn.Location = new System.Drawing.Point(526, 785);
+            this.pay_CancelBtn.Name = "pay_CancelBtn";
+            this.pay_CancelBtn.Size = new System.Drawing.Size(299, 91);
+            this.pay_CancelBtn.TabIndex = 1;
+            this.pay_CancelBtn.Text = "취소하기";
+            this.pay_CancelBtn.UseVisualStyleBackColor = true;
+            this.pay_CancelBtn.Click += new System.EventHandler(this.pay_CancelBtn_Click);
+            // 
+            // pay_priceLb
+            // 
+            this.pay_priceLb.AutoSize = true;
+            this.pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pay_priceLb.Location = new System.Drawing.Point(1075, 503);
+            this.pay_priceLb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.pay_priceLb.Name = "pay_priceLb";
+            this.pay_priceLb.Size = new System.Drawing.Size(264, 55);
+            this.pay_priceLb.TabIndex = 0;
+            this.pay_priceLb.Text = "총액 표시 ";
+            // 
+            // AdminTab
+            // 
+            this.AdminTab.Location = new System.Drawing.Point(4, 28);
+            this.AdminTab.Margin = new System.Windows.Forms.Padding(4);
+            this.AdminTab.Name = "AdminTab";
+            this.AdminTab.Size = new System.Drawing.Size(1890, 992);
+            this.AdminTab.TabIndex = 5;
+            this.AdminTab.Text = "관리자모드";
+            this.AdminTab.UseVisualStyleBackColor = true;
+            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1104, 626);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 18);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "label5";
             // 
             // Form1
             // 
@@ -570,6 +582,7 @@
         private System.Windows.Forms.Button pay_CancelBtn;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 
