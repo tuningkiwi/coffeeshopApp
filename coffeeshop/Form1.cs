@@ -32,7 +32,10 @@ namespace coffeeshop
 
 
         //DB연결 
-        string sConn =$"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
+        //string sConn =$"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
+        string sConn =$@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+
+
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
         
@@ -78,6 +81,8 @@ namespace coffeeshop
             });
         }
 
+
+        //  dialog  메뉴 세부 사항 선택창 종료하고, 부모 창에 데이터 전달 
         private void dialogResultCheck(ref menuSelected menuSpec) {
             if (DialogResult.OK == menuSpec.ShowDialog())
             {
@@ -315,6 +320,7 @@ namespace coffeeshop
         }
 
 
+        // CART TAB  DATA GRID VIEW 
         private void orderListShow(object sender, EventArgs e)
         {
 
@@ -342,6 +348,17 @@ namespace coffeeshop
                     //데이터뷰에 컬럼 생성
                     dataGridView1.Columns.Add(colName, colName);
                 }
+
+                DataGridViewButtonColumn quantityControl = new DataGridViewButtonColumn();
+                //quantityControl.Width =
+                quantityControl.HeaderText = "수량조절";
+                quantityControl.Text = "-";
+                quantityControl.Name = "quantitySubtract";
+                quantityControl.UseColumnTextForButtonValue = true; 
+                dataGridView1.Columns.Add(quantityControl);
+                   
+                
+
 
                 dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
                 dataGridView1.AllowUserToResizeColumns = false;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace coffeeshop
 {
@@ -71,11 +72,13 @@ namespace coffeeshop
 
         private void subtract_Click(object sender, EventArgs e)
         {
-            subOrder.quantity--;
-            if(subOrder.quantity <= 0) {
-                subOrder.quantity = 0;
+
+            if (subOrder.quantity > 0)
+            {
+                subOrder.quantity--;
+                countLabel.Text = subOrder.quantity.ToString();
+        
             }
-            countLabel.Text = subOrder.quantity.ToString();
         }
 
         private void HOT_Click(object sender, EventArgs e)
