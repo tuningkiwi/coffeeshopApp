@@ -330,10 +330,12 @@ namespace coffeeshop
         {
             tabControl.SelectedTab = payTab;
 
+            pictureBox2.Image = new Bitmap(global::coffeeshop.Properties.Resources.PayQR2, new Size(250, 310));
+            
             printTotal();
             List<String> result = printTotal();
             pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F);
-            pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";
+            pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";            
 
         }
 
