@@ -344,8 +344,8 @@ namespace coffeeshop
         /*************************************/
         // 로그인과 비밀번호 변경하기
 
-        private const string CorrectUsername = "admin2";//초기id
-        private const string CorrectPw = "1234";        //초기비번
+        private string CorrectUsername = "admin2";//초기id
+        private string CorrectPw = "1234";        //초기비번
         private bool loggedIn = false;
 
         private void login_Click(object sender, EventArgs e)
@@ -379,15 +379,19 @@ namespace coffeeshop
             }
         }
         
+        
         private void OpenPwChangeForm()
         {
             pwChange newPwChange = new pwChange();
-            newPwChange.ShowDialog();
+            DialogResult dResult = newPwChange.ShowDialog();
 
-            string newPw = newPwChange.GetNewPw();
-            string confirmPw = newPwChange.GetConfirmPw();
 
-        }       
+            if (dResult == DialogResult.OK ){
+                CorrectPw = newPwChange.newPassword;
+            }
+            
+        }
+        
 
 
         /*************************************/

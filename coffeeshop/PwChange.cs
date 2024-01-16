@@ -12,6 +12,8 @@ namespace coffeeshop
 {
     public partial class pwChange : Form
     {
+        public string newPassword = "";
+
         public pwChange()
         {
             InitializeComponent();
@@ -32,15 +34,16 @@ namespace coffeeshop
             if (newPw.Text == confirmPw.Text)
             {                
                 MessageBox.Show("비밀번호가 성공적으로 변경되었습니다");
+                newPassword = newPw.Text;
                 this.Close();
             }
             else
             {
                 MessageBox.Show("새 비밀번호가 서로 일치하지 않습니다");
-            }
+            }  
             
         }
 
-    }            
+    }
 
 }
