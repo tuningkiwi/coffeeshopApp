@@ -43,6 +43,9 @@ namespace coffeeshop
         {
             InitializeComponent();
 
+            //dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("D2Coding", 18F);               dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("D2Coding", 24F);
+           
+
             //DB 연결 
             sqlConnect.ConnectionString = sConn;
             sqlConnect.Open();
@@ -566,9 +569,13 @@ namespace coffeeshop
                 //그리드 셀 내용 오른쪽 정렬 
                 _gridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 _gridView.DefaultCellStyle.Font = new Font("D2Coding", 18);
+                
+                
             }
 
+        
 
+            
             for (int i = 0; i < result.Count; i++)
             {
                 //sr로부터 i번째 col 의 값을 가져오고 

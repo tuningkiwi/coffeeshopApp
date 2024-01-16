@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridView_admin = new System.Windows.Forms.DataGridView();
-            this.waitingListBtn = new System.Windows.Forms.Button();
-            this.completedListBtn = new System.Windows.Forms.Button();
             this.totalSalesBtn = new System.Windows.Forms.Label();
+            this.completedListBtn = new System.Windows.Forms.Button();
+            this.waitingListBtn = new System.Windows.Forms.Button();
+            this.dataGridView_admin = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,15 +61,25 @@
             this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 0;
             // 
-            // dataGridView_admin
+            // totalSalesBtn
             // 
-            this.dataGridView_admin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_admin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_admin.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_admin.Name = "dataGridView_admin";
-            this.dataGridView_admin.Size = new System.Drawing.Size(800, 266);
-            this.dataGridView_admin.TabIndex = 0;
-            this.dataGridView_admin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_admin_CellClick);
+            this.totalSalesBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.totalSalesBtn.Location = new System.Drawing.Point(539, 35);
+            this.totalSalesBtn.Name = "totalSalesBtn";
+            this.totalSalesBtn.Size = new System.Drawing.Size(245, 50);
+            this.totalSalesBtn.TabIndex = 2;
+            this.totalSalesBtn.Text = "누적 매출: ";
+            this.totalSalesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // completedListBtn
+            // 
+            this.completedListBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.completedListBtn.Location = new System.Drawing.Point(288, 35);
+            this.completedListBtn.Name = "completedListBtn";
+            this.completedListBtn.Size = new System.Drawing.Size(245, 50);
+            this.completedListBtn.TabIndex = 1;
+            this.completedListBtn.Text = "완료주문 확인하기";
+            this.completedListBtn.UseVisualStyleBackColor = true;
             // 
             // waitingListBtn
             // 
@@ -82,25 +92,16 @@
             this.waitingListBtn.UseVisualStyleBackColor = true;
             this.waitingListBtn.Click += new System.EventHandler(this.waitingListBtn_Click);
             // 
-            // completedListBtn
+            // dataGridView_admin
             // 
-            this.completedListBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.completedListBtn.Location = new System.Drawing.Point(288, 35);
-            this.completedListBtn.Name = "completedListBtn";
-            this.completedListBtn.Size = new System.Drawing.Size(245, 50);
-            this.completedListBtn.TabIndex = 1;
-            this.completedListBtn.Text = "완료주문 확인하기";
-            this.completedListBtn.UseVisualStyleBackColor = true;
-            // 
-            // totalSalesBtn
-            // 
-            this.totalSalesBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.totalSalesBtn.Location = new System.Drawing.Point(539, 35);
-            this.totalSalesBtn.Name = "totalSalesBtn";
-            this.totalSalesBtn.Size = new System.Drawing.Size(245, 50);
-            this.totalSalesBtn.TabIndex = 2;
-            this.totalSalesBtn.Text = "누적 매출: ";
-            this.totalSalesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dataGridView_admin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_admin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_admin.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_admin.Name = "dataGridView_admin";
+            this.dataGridView_admin.RowTemplate.Height = 40;
+            this.dataGridView_admin.Size = new System.Drawing.Size(800, 266);
+            this.dataGridView_admin.TabIndex = 0;
+            this.dataGridView_admin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_admin_CellClick);
             // 
             // adminSec
             // 

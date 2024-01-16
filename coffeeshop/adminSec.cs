@@ -22,7 +22,7 @@ namespace coffeeshop
         private void waitingListBtn_Click(object sender, EventArgs e)
         {
             dataGridView_admin.DefaultCellStyle.Font = new Font("D2Coding", 18);
-
+            
             string cmd =  "select * from waiting_order_list";
             frm.orderListShow(sender, e, cmd, dataGridView_admin);
 
