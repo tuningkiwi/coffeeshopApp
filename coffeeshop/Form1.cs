@@ -31,8 +31,10 @@ namespace coffeeshop
         private static int s_orderIDSeed = 1000;
 
         //DB연결 
-        string sConn = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
+        //string sConn = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
         //string sConn =$@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
@@ -51,7 +53,6 @@ namespace coffeeshop
 
             splitContainer1.SplitterDistance = Height * 3 / 4;
 
-
         }
 
 
@@ -65,7 +66,7 @@ namespace coffeeshop
             orderData = new OrderData(s_orderIDSeed, flag_increase_seed.Yes);
             //결제하기 됐을 때 , s_orderIDSeed++;
             totalOrder = new List<OrderData>();
-            tabControl.SelectedTab = takeOutTab;
+            orderTabCtrl.SelectedTab = takeOutTab;
         }
 
         /***************************************/
@@ -76,14 +77,14 @@ namespace coffeeshop
         private void forHereBtn_Click(object sender, EventArgs e)
         {
             orderData.take = "FORHERE";
-            tabControl.SelectedTab = menuTab;
+            orderTabCtrl.SelectedTab = menuTab;
         }
 
         //2번째 탭 : 포장하기 버튼 
         private void toGoBtn_Click(object sender, EventArgs e)
         {
             orderData.take = "TOGO";
-            tabControl.SelectedTab = menuTab;
+            orderTabCtrl.SelectedTab = menuTab;
 
         }
 
@@ -273,11 +274,13 @@ namespace coffeeshop
         private void menu_cart_Click(object sender, EventArgs e)
         {
             splitContainer1.SplitterDistance = Width * 2 / 3;
-            tabControl.SelectedTab = cartTab;
+            orderTabCtrl.SelectedTab = cartTab;
 
-            dataGridView1.DefaultCellStyle.Font = new Font("D2Coding", 18);
 
-            orderListShow(sender, e);
+            string cmd =  "select cur.menu_name, cur.hot_cold, cur.size, it.price, cur.quantity from current_order_list cur INNER JOIN item_price it on cur.menu_name = it.menu_name and cur.size = it.size ";
+
+
+            orderListShow(sender, e, cmd, dataGridView1);
 
             List<String> result = printTotal();
             totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
@@ -287,8 +290,127 @@ namespace coffeeshop
         }
 
 
+
+        /*************************************/
+        //           결제하기                //
+        /*************************************/
+        //장바구니창에서 결제하기 클릭시 수행 
+        private void paymentBtn_Click(object sender, EventArgs e)
+        {
+            orderTabCtrl.SelectedTab = payTab;
+
+            printTotal();
+            List<String> result = printTotal();
+            pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F);
+            pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";
+
+        }
+
+        /*************************************/
+        //           취소하기                //
+        /*************************************/
+
+        //메뉴창에서  취소하기 
+        private void goToBegin_Click(object sender, EventArgs e)
+        {
+            orderTabCtrl.SelectedTab = welcomeTab;
+        }
+
+
+        //장바구니에서 취소하면, 처음 화면으로 돌아가고 데이터 초기화 
+        private void cart_cancelBtn_Click(object sender, EventArgs e)
+        {
+            orderTabCtrl.SelectedTab = welcomeTab;
+
+            //sql data delete 
+            // 주문세부ID(orderDetailID), 먹고가기/포장(take)정보를 제외하고는 초기화
+
+        }
+
+        //결제창에서 취소하기
+        private void pay_CancelBtn_Click(object sender, EventArgs e)
+        {
+            orderTabCtrl.SelectedTab = welcomeTab;
+        }
+
+
+
+        private void payCompleted_Click(object sender, EventArgs e)
+        {
+            orderTabCtrl.SelectedTab = orderCompletedTab;
+
+            //메뉴항목별 menu_id update
+            sqlCommand.CommandText = $"update current_order_list set menu_id=it.menu_id from current_order_list cur INNER JOIN  item_price it on cur.menu_name=it.menu_name and cur.size=it.size;";
+            sqlCommand.ExecuteNonQuery();
+
+            /******결제가 완료되면, menu_id 업데이트와 현재 주문목록이 확정되어 처리대기중인 주문리스트로 복사됨  */
+            sqlCommand.CommandText = $"insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [hot_cold],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from current_order_list;";
+            sqlCommand.ExecuteNonQuery();
+
+            //주문 대기 번호 출력 
+            sqlCommand.CommandText = $"select TOP 1 order_id from current_order_list"; 
+            SqlDataReader rdr = sqlCommand.ExecuteReader();
+            string orderWaitingNumber = "";
+            while (rdr.Read())
+            {
+                orderWaitingNumber = rdr["order_id"].ToString();
+            }
+            rdr.Close();
+
+            orderNumberLb2.Text = orderWaitingNumber;
+
+             //새 주문자 등장 
+            s_orderIDSeed++;
+            orderData.orderID = s_orderIDSeed;
+            orderData.orderDetailID = 0;
+            orderData.take ="";
+            orderData.menuName = "";
+            orderData.hotCold = "";
+            orderData.size = "";
+            orderData.quantity = 0;  
+
+            //현재 주문 리스트 테이블 데이터 초기화 
+            //새로운 주문자의 주문을 받기 위해서
+            sqlCommand.CommandText = $"delete from current_order_list";
+            sqlCommand.ExecuteNonQuery();  
+            
+            menuListLb.Text = "주문내역";
+            totalCountLb.Text = "총      0개/ 총      0원";
+            pay_priceLb.Text = "총      0개/ 총      0원";
+
+            //dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+
+        }
+
+
+
+        //**********주문 완료 후 기존 데이터 삭제 *******/
+        private void completed_gotoStartBtn_Click(object sender, EventArgs e)
+        {
+            orderNumberLb2.Text = ".";
+            //웰컴 창으로 이동 
+            orderTabCtrl.SelectedTab = welcomeTab;     
+        }
+
+        private void adminLogin_Click(object sender, EventArgs e)
+        {
+            adminSec admin = new adminSec();
+
+            
+
+            DialogResult dResult = admin.ShowDialog();
+            if (dResult == DialogResult.OK)
+            {
+
+            }
+        }
+
+
         //총 주문 갯수 및 결제(예정) 금액 출력 
-        private List<String> printTotal() {
+        public List<String> printTotal()
+        {
             sqlCommand.CommandText = "select sum(quantity) as total_count from current_order_list";
             SqlDataReader rdr = sqlCommand.ExecuteReader();
             String strCount = "", strPrice = "";
@@ -308,57 +430,15 @@ namespace coffeeshop
             }
             rdr2.Close();
 
-            List < String > result = new List<String>();
+            List<String> result = new List<String>();
             result.Add(strCount);
             result.Add(strPrice);
 
             return result;
 
             //주문 총 잔수/ 총액 
-            
-        }
-
-        /*************************************/
-        //           결제하기                //
-        /*************************************/
-        //장바구니창에서 결제하기 클릭시 수행 
-        private void paymentBtn_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = payTab;
-
-            printTotal();
-            List<String> result = printTotal();
-            pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F);
-            pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";
 
         }
-
-        /*************************************/
-        //           취소하기                //
-        /*************************************/
-
-        //메뉴창에서  취소하기 
-        private void goToBegin_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = takeOutTab;
-        }
-
-
-        //장바구니에서 취소하면, 처음 화면으로 돌아가고 데이터 초기화 
-        private void cart_cancelBtn_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = welcomeTab;
-            //sql data delete 
-            // 주문세부ID(orderDetailID), 먹고가기/포장(take)정보를 제외하고는 초기화
-
-        }
-
-        //결제창에서 취소하기
-        private void pay_CancelBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         ArrayList ColName = new ArrayList();
         List<object[]> RunSql(string sql)
@@ -399,22 +479,18 @@ namespace coffeeshop
 
 
         // CART TAB  DATA GRID VIEW 
-        private void orderListShow(object sender, EventArgs e)
+        public void orderListShow(object sender, EventArgs e, string cmd, DataGridView _gridView)
         {
 
 
             /*주문내역 SHOW */
-            string sql = "select cur.menu_name, cur.hot_cold, cur.size, it.price, cur.quantity" +
-                " from current_order_list cur " +
-                "INNER JOIN item_price it on cur.menu_name = it.menu_name and cur.size = it.size ";
-
-
+            string sql = cmd;
             List<object[]> result = RunSql(sql);
             if (result == null) return;
 
-
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
+            //_gridView.DataSource = null;
+            _gridView.Rows.Clear();
+            _gridView.Columns.Clear();
 
 
             for (int i = 0; i < ColName.Count - 1; i++)
@@ -422,7 +498,7 @@ namespace coffeeshop
                 //추가되는 컬럼의 프로그래밍상 접근 이름, 표시되는 이름 
                 //데이터뷰에 컬럼 생성
                 string _colName = ColName[i].ToString();
-                dataGridView1.Columns.Add(_colName, _colName);
+                _gridView.Columns.Add(_colName, _colName);
 
 
             }
@@ -432,11 +508,11 @@ namespace coffeeshop
             quantityControl.Text = "-";
             quantityControl.Name = "Sub";
             quantityControl.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(quantityControl);
+            _gridView.Columns.Add(quantityControl);
 
             //quantity
             string colName = ColName[4].ToString();
-            dataGridView1.Columns.Add(colName, colName);
+            _gridView.Columns.Add(colName, colName);
 
             //+버튼 
             DataGridViewButtonColumn quantityControl2 = new DataGridViewButtonColumn();
@@ -445,7 +521,7 @@ namespace coffeeshop
             quantityControl2.Text = "+";
             quantityControl2.Name = "Add";
             quantityControl2.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(quantityControl2);
+            _gridView.Columns.Add(quantityControl2);
 
             //x버튼 
             //+버튼 
@@ -455,73 +531,75 @@ namespace coffeeshop
             quantityControl3.Text = "삭제";
             quantityControl3.Name = "Del";
             quantityControl3.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(quantityControl3);
+            _gridView.Columns.Add(quantityControl3);
 
 
             //데이터 그리드 row column 크기 조정 불가 
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode =
+            _gridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            _gridView.AllowUserToResizeColumns = false;
+            _gridView.ColumnHeadersHeightSizeMode =
                 DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.RowHeadersWidthSizeMode =
+            _gridView.AllowUserToResizeRows = false;
+            _gridView.RowHeadersWidthSizeMode =
                 DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridView1.ReadOnly = true;
+            _gridView.ReadOnly = true;
 
 
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            for (int i = 0; i < _gridView.Columns.Count; i++)
             {
-                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dataGridView1.Columns[i].Resizable = DataGridViewTriState.False;
-                dataGridView1.Columns[i].ReadOnly = true;
+                _gridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                _gridView.Columns[i].Resizable = DataGridViewTriState.False;
+                _gridView.Columns[i].ReadOnly = true;
+
 
                 //메뉴이름 너비 
-                if (i == 0) { dataGridView1.Columns[i].Width = 300; }
+                if (i == 0) { _gridView.Columns[i].Width = 300; }
                 else if (i == 4 || i == 6)
                 { //버튼 위치 너비 
-                    dataGridView1.Columns[i].Width = 70;
+                    _gridView.Columns[i].Width = 70;
                 }
                 else
                 {//나머지 크기 
-                    dataGridView1.Columns[i].Width = 150;
+                    _gridView.Columns[i].Width = 150;
                 }
-                //dataGridView1.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //_gridView.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 //그리드 셀 내용 오른쪽 정렬 
-                dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
+                _gridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                _gridView.DefaultCellStyle.Font = new Font("D2Coding", 18);
             }
 
 
             for (int i = 0; i < result.Count; i++)
             {
                 //sr로부터 i번째 col 의 값을 가져오고 
-                int nRow = dataGridView1.Rows.Add();
+                int nRow = _gridView.Rows.Add();
+                
                 object[] row = result[i];
                 for (int j = 0; j < row.Count() - 1; j++)
                 {
-                    dataGridView1.Rows[nRow].Cells[j].Value = row[j];
+                    _gridView.Rows[nRow].Cells[j].Value = row[j];
 
                 }
                 //quantity 
-                dataGridView1.Rows[nRow].Cells[5].Value = row[4];
+                _gridView.Rows[nRow].Cells[5].Value = row[4];
             }
 
         }
 
-        void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void sub_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e, DataGridView _gridView)
         {
-            
+
             // Ignore clicks that are not on button cells. 
-            if(e.RowIndex < 0) { return; }
+            if (e.RowIndex < 0) { return; }
 
             //+버튼 눌렀을 때 update 
-            if (e.ColumnIndex == dataGridView1.Columns["Add"].Index)
+            if (e.ColumnIndex == _gridView.Columns["Add"].Index)
             {//6번 
-                string _m_name = (string)dataGridView1[0, e.RowIndex].Value;
-                string _hot_cold = (string)dataGridView1[1, e.RowIndex].Value;
-                string _size = (string)dataGridView1[2, e.RowIndex].Value;
+                string _m_name = (string)_gridView[0, e.RowIndex].Value;
+                string _hot_cold = (string)_gridView[1, e.RowIndex].Value;
+                string _size = (string)_gridView[2, e.RowIndex].Value;
 
-                string str = "Add"+_m_name + _hot_cold + _size;
+                string str = "Add" + _m_name + _hot_cold + _size;
                 label6.Text = str;
 
                 string quantityAdd = $"update current_order_list set quantity=quantity+1 " +
@@ -530,11 +608,12 @@ namespace coffeeshop
                 sqlCommand.ExecuteNonQuery();
 
             }//- 버튼 눌렀을 때 update 
-            else if (e.ColumnIndex == dataGridView1.Columns["Sub"].Index) {
-                string _m_name = (string)dataGridView1[0, e.RowIndex].Value;
-                string _hot_cold = (string)dataGridView1[1, e.RowIndex].Value;
-                string _size = (string)dataGridView1[2, e.RowIndex].Value;
-                int _quantity = (int)dataGridView1[5,e.RowIndex].Value;
+            else if (e.ColumnIndex == _gridView.Columns["Sub"].Index)
+            {
+                string _m_name = (string)_gridView[0, e.RowIndex].Value;
+                string _hot_cold = (string)_gridView[1, e.RowIndex].Value;
+                string _size = (string)_gridView[2, e.RowIndex].Value;
+                int _quantity = (int)_gridView[5, e.RowIndex].Value;
 
                 if (_quantity == 1) { return; }//0으로가면 안됨 
 
@@ -547,11 +626,11 @@ namespace coffeeshop
                 sqlCommand.ExecuteNonQuery();
 
             }
-            else if (e.ColumnIndex == dataGridView1.Columns["Del"].Index)
+            else if (e.ColumnIndex == _gridView.Columns["Del"].Index)
             {
-                string _m_name = (string)dataGridView1[0, e.RowIndex].Value;
-                string _hot_cold = (string)dataGridView1[1, e.RowIndex].Value;
-                string _size = (string)dataGridView1[2, e.RowIndex].Value;
+                string _m_name = (string)_gridView[0, e.RowIndex].Value;
+                string _hot_cold = (string)_gridView[1, e.RowIndex].Value;
+                string _size = (string)_gridView[2, e.RowIndex].Value;
 
                 string str = "Del" + _m_name + _hot_cold + _size;
                 label6.Text = str;
@@ -563,15 +642,26 @@ namespace coffeeshop
 
             }
 
-            orderListShow(sender, e);
+        }
+
+        public void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            sub_dataGridView_CellClick(sender, e, dataGridView1);
+
+            string cmd = "select cur.menu_name, cur.hot_cold, cur.size, it.price, cur.quantity" +
+               " from current_order_list cur " +
+               "INNER JOIN item_price it on cur.menu_name = it.menu_name and cur.size = it.size ";
+
+            orderListShow(sender, e, cmd, dataGridView1);
 
             List<String> result = printTotal();
             totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
             totalCountLb.Text = $"총{result[0]}개/   {result[1]}원";
 
-
-
         }
+
+
+
 
         //private void deleteRowButton_Click(object sender, EventArgs e)
         //{
@@ -585,4 +675,6 @@ namespace coffeeshop
         //}
 
     }
+
+
 }

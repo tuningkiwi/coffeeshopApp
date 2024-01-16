@@ -114,6 +114,10 @@ select * from item_price
 select sum(it.price*cur.quantity) as total_price from current_order_list cur INNER JOIN item_price it
 on cur.menu_name = it.menu_name and cur.size = it.size 
 
+/* 주문 대기번호 order_id 출력 */
+select TOP 1 order_id from current_order_list
+
+
 /******결제가 완료되면, menu_id 업데이트와 현재 주문목록이 확정되어 처리대기중인 주문리스트로 복사됨  */
 /*menu_id 업데이트 */
 select * from item_price 
