@@ -17,6 +17,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
+//유진 브랜치 시작 
 namespace coffeeshop
 {
 
@@ -31,8 +33,10 @@ namespace coffeeshop
         private static int s_orderIDSeed = 1000;
 
         //DB연결 
-        string sConn = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
+        //string sConn = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
         //string sConn =$@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\orderlistdb.mdf;Integrated Security=True;Connect Timeout=30";
+
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
