@@ -320,7 +320,8 @@ namespace coffeeshop
         private const string CorrectPw = "1234";        //초기비번
         private bool loggedIn = false;
 
-        private void login_Click(object sender, EventArgs e)
+
+        private void adminLogin_Click(object sender, EventArgs e)
         {
             string enteredUsername = idBox.Text;
             string enteredPw = pwBox.Text;
@@ -330,6 +331,14 @@ namespace coffeeshop
                 // 로그인 성공
                 MessageBox.Show("로그인 되었습니다");
                 loggedIn = true;
+
+                adminSec admin = new adminSec();
+
+                DialogResult dResult = admin.ShowDialog();
+                if (dResult == DialogResult.OK)
+                {
+
+                }
             }
             else
             {
@@ -337,8 +346,9 @@ namespace coffeeshop
                 MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다", "false", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 loggedIn = false;
             }
-        }
 
+            
+        }
 
 
         /*************************************/
@@ -429,18 +439,7 @@ namespace coffeeshop
             orderTabCtrl.SelectedTab = welcomeTab;     
         }
 
-        private void adminLogin_Click(object sender, EventArgs e)
-        {
 
-
-            adminSec admin = new adminSec();
-
-            DialogResult dResult = admin.ShowDialog();
-            if (dResult == DialogResult.OK)
-            {
-
-            }
-        }
 
 
         //총 주문 갯수 및 결제(예정) 금액 출력 
