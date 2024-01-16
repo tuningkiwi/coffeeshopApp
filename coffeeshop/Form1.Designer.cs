@@ -54,7 +54,6 @@
             this.cartTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
             this.cart_cancelBtn = new System.Windows.Forms.Button();
             this.paymentBtn = new System.Windows.Forms.Button();
             this.totalCountLb = new System.Windows.Forms.Label();
@@ -396,7 +395,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.cart_cancelBtn);
             this.splitContainer1.Panel2.Controls.Add(this.paymentBtn);
             this.splitContainer1.Panel2.Controls.Add(this.totalCountLb);
@@ -416,15 +414,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1891, 599);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(257, 88);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 18);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "label6";
             // 
             // cart_cancelBtn
             // 
@@ -719,7 +708,6 @@
         private System.Windows.Forms.Button payCompleted;
         private System.Windows.Forms.Button pay_CancelBtn;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button adminLogin;
         private System.Windows.Forms.TabPage orderCompletedTab;
         private System.Windows.Forms.Label orderNumberLb1;

@@ -646,10 +646,6 @@ namespace coffeeshop
                 string _m_name = (string)_gridView[0, e.RowIndex].Value;
                 string _hot_cold = (string)_gridView[1, e.RowIndex].Value;
                 string _size = (string)_gridView[2, e.RowIndex].Value;
-
-                string str = "Add" + _m_name + _hot_cold + _size;
-                label6.Text = str;
-
                 string quantityAdd = $"update current_order_list set quantity=quantity+1 " +
                     $"where menu_name=N'{_m_name}' and hot_cold =N'{_hot_cold}' and size=N'{_size}'";
                 sqlCommand.CommandText = quantityAdd;
@@ -664,10 +660,6 @@ namespace coffeeshop
                 int _quantity = (int)_gridView[5, e.RowIndex].Value;
 
                 if (_quantity == 1) { return; }//0으로가면 안됨 
-
-                string str = "Sub" + _m_name + _hot_cold + _size;
-                label6.Text = str;
-
                 string quantitySub = $"update current_order_list set quantity=quantity-1 " +
                 $"where menu_name=N'{_m_name}' and hot_cold =N'{_hot_cold}' and size=N'{_size}'";
                 sqlCommand.CommandText = quantitySub;
@@ -679,10 +671,6 @@ namespace coffeeshop
                 string _m_name = (string)_gridView[0, e.RowIndex].Value;
                 string _hot_cold = (string)_gridView[1, e.RowIndex].Value;
                 string _size = (string)_gridView[2, e.RowIndex].Value;
-
-                string str = "Del" + _m_name + _hot_cold + _size;
-                label6.Text = str;
-
                 string quantityDel = $"delete from current_order_list " +
                 $"where menu_name=N'{_m_name}' and hot_cold =N'{_hot_cold}' and size=N'{_size}'";
                 sqlCommand.CommandText = quantityDel;
