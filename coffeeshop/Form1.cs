@@ -14,6 +14,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -31,9 +32,7 @@ namespace coffeeshop
         private static int s_orderIDSeed = 1000;
 
         //DB연결 
-        //string sConn = $"Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\vests\\source\\repos\\coffeeshopApp\\coffeeshop\\orderListDB.mdf;Integrated Security = True; Connect Timeout = 30";
-        //string sConn =$@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
 
 
         SqlConnection sqlConnect = new SqlConnection();
@@ -316,23 +315,23 @@ namespace coffeeshop
         /*************************************/
         // 로그인과 비밀번호 변경하기
 
-        private const string CorrectUsername = "admin2";//초기id
-        private const string CorrectPw = "1234";        //초기비번
-        private bool loggedIn = false;
-
-
         private void adminLogin_Click(object sender, EventArgs e)
         {
-            string enteredUsername = idBox.Text;
-            string enteredPw = pwBox.Text;
+            sqlCommand.CommandText = "select * from admin_id_pw";
+            SqlDataReader rdr = sqlCommand.ExecuteReader();
+            string _password = ""; string _id = "";
+            while (rdr.Read())
+            {
+                _id += rdr["id"].ToString();
+                _password += rdr["password"].ToString();
+            }
+            rdr.Close();
 
-            if (enteredUsername == CorrectUsername && enteredPw == CorrectPw)
+            if (idBox.Text == _id && pwBox.Text ==_password)
             {
                 // 로그인 성공
                 MessageBox.Show("로그인 되었습니다");
-                loggedIn = true;
-
-                adminSec admin = new adminSec();
+                adminSec admin = new adminSec(_id);
 
                 DialogResult dResult = admin.ShowDialog();
                 if (dResult == DialogResult.OK)
@@ -344,10 +343,7 @@ namespace coffeeshop
             {
                 // 로그인 실패
                 MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다", "false", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                loggedIn = false;
             }
-
-            
         }
 
 
@@ -380,6 +376,9 @@ namespace coffeeshop
 
 
 
+        //주문자가 결제 완료 버튼 누를 경우,
+        //주문이 확정되어 , 대기 중인 주문 리스트 DB로 이동하고
+        //다음 주문자를 위한 기존 주문 데이터는 삭제된다. 
         private void payCompleted_Click(object sender, EventArgs e)
         {
             orderTabCtrl.SelectedTab = orderCompletedTab;
@@ -440,8 +439,6 @@ namespace coffeeshop
         }
 
 
-
-
         //총 주문 갯수 및 결제(예정) 금액 출력 
         public List<String> printTotal()
         {
@@ -470,10 +467,18 @@ namespace coffeeshop
 
             return result;
 
-            //주문 총 잔수/ 총액 
+            
 
         }
 
+        /// <summary>
+        /// SQL 처리 문과 Data grid view 에서 사용자 동작 처리 
+        /// 장바구니 내역에서 최종적으로 사용자가 주문 내역을 변경하고
+        /// DB 테이블 데이터도 업데이트가 이루어진다 
+        /// </summary>
+
+
+        //SQL 쿼리 처리 함수 
         ArrayList ColName = new ArrayList();
         List<object[]> RunSql(string sql)
         {
@@ -585,18 +590,6 @@ namespace coffeeshop
                 _gridView.Columns[i].Resizable = DataGridViewTriState.False;
                 _gridView.Columns[i].ReadOnly = true;
 
-
-                ////메뉴이름 너비 
-                //if (i == 0) { _gridView.Columns[i].Width = 300; }
-                //else if (i == 4 || i == 6)
-                //{ //버튼 위치 너비 
-                //    _gridView.Columns[i].Width = 70;
-                //}
-                //else
-                //{//나머지 크기 
-                //    _gridView.Columns[i].Width = 150;
-                //}
-                //_gridView.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 //그리드 셀 내용 오른쪽 정렬 
                 _gridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 _gridView.DefaultCellStyle.Font = new Font("D2Coding", 18);
@@ -604,9 +597,7 @@ namespace coffeeshop
                 
             }
 
-        
 
-            
             for (int i = 0; i < result.Count; i++)
             {
                 //sr로부터 i번째 col 의 값을 가져오고 
@@ -624,6 +615,25 @@ namespace coffeeshop
 
         }
 
+
+        public void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            sub_dataGridView_CellClick(sender, e, dataGridView1);
+
+            string cmd = "select cur.menu_name, cur.hot_cold, cur.size, it.price, cur.quantity" +
+               " from current_order_list cur " +
+               "INNER JOIN item_price it on cur.menu_name = it.menu_name and cur.size = it.size ";
+
+            orderListShow(sender, e, cmd, dataGridView1);
+
+            List<String> result = printTotal();
+            totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
+            totalCountLb.Text = $"총{result[0]}개/   {result[1]}원";
+
+        }
+
+        //출력된 주문 내역 리스트에서 수량 + 또는 - 를 클릭했을 때 
+        //DB 테이블 상에서도 같이 수정 처리 
         public void sub_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e, DataGridView _gridView)
         {
 
@@ -682,35 +692,7 @@ namespace coffeeshop
 
         }
 
-        public void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            sub_dataGridView_CellClick(sender, e, dataGridView1);
 
-            string cmd = "select cur.menu_name, cur.hot_cold, cur.size, it.price, cur.quantity" +
-               " from current_order_list cur " +
-               "INNER JOIN item_price it on cur.menu_name = it.menu_name and cur.size = it.size ";
-
-            orderListShow(sender, e, cmd, dataGridView1);
-
-            List<String> result = printTotal();
-            totalCountLb.Font = new System.Drawing.Font("D2Coding", 24F);
-            totalCountLb.Text = $"총{result[0]}개/   {result[1]}원";
-
-        }
-
-
-
-
-        //private void deleteRowButton_Click(object sender, EventArgs e)
-        //{
-        //    if (this.songsDataGridView.SelectedRows.Count > 0 &&
-        //        this.songsDataGridView.SelectedRows[0].Index !=
-        //        this.songsDataGridView.Rows.Count - 1)
-        //    {
-        //        this.songsDataGridView.Rows.RemoveAt(
-        //            this.songsDataGridView.SelectedRows[0].Index);
-        //    }
-        //}
 
     }
 

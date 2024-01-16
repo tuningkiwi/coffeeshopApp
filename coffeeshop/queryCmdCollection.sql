@@ -2,6 +2,13 @@
 select a.Id,Name,phone,grade,kor,eng from person a inner join student b on a.id=b.id;
 */
 
+CREATE TABLE [dbo].[admin_id_pw] (
+    [id]       NVARCHAR(50) NULL,
+    [password] INT        NULL
+);
+
+insert into admin_id_pw (id,password) values (N'admin',1234)
+update admin_id_pw set password=1234 where id=N'admin'
 
 CREATE TABLE [dbo].[completed_order_list] (
     [order_id]        INT           NULL,
