@@ -65,12 +65,13 @@
             this.pay_CancelBtn = new System.Windows.Forms.Button();
             this.pay_priceLb = new System.Windows.Forms.Label();
             this.AdminTab = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.id = new System.Windows.Forms.Label();
-            this.password = new System.Windows.Forms.Label();
-            this.idBox = new System.Windows.Forms.TextBox();
-            this.passwordBox = new System.Windows.Forms.TextBox();
+            this.pwChange = new System.Windows.Forms.Button();
             this.login = new System.Windows.Forms.Button();
+            this.pwBox = new System.Windows.Forms.TextBox();
+            this.idBox = new System.Windows.Forms.TextBox();
+            this.pw = new System.Windows.Forms.Label();
+            this.id = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
@@ -475,16 +476,16 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::coffeeshop.Properties.Resources.PayQR2;
-            this.pictureBox2.Location = new System.Drawing.Point(423, 116);
+            this.pictureBox2.Location = new System.Drawing.Point(8, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(291, 347);
+            this.pictureBox2.Size = new System.Drawing.Size(653, 651);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(691, 523);
+            this.button1.Location = new System.Drawing.Point(1016, 544);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(209, 61);
@@ -495,7 +496,7 @@
             // pay_CancelBtn
             // 
             this.pay_CancelBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.pay_CancelBtn.Location = new System.Drawing.Point(368, 523);
+            this.pay_CancelBtn.Location = new System.Drawing.Point(693, 544);
             this.pay_CancelBtn.Margin = new System.Windows.Forms.Padding(2);
             this.pay_CancelBtn.Name = "pay_CancelBtn";
             this.pay_CancelBtn.Size = new System.Drawing.Size(209, 61);
@@ -516,10 +517,11 @@
             // 
             // AdminTab
             // 
+            this.AdminTab.Controls.Add(this.pwChange);
             this.AdminTab.Controls.Add(this.login);
-            this.AdminTab.Controls.Add(this.passwordBox);
+            this.AdminTab.Controls.Add(this.pwBox);
             this.AdminTab.Controls.Add(this.idBox);
-            this.AdminTab.Controls.Add(this.password);
+            this.AdminTab.Controls.Add(this.pw);
             this.AdminTab.Controls.Add(this.id);
             this.AdminTab.Location = new System.Drawing.Point(4, 22);
             this.AdminTab.Name = "AdminTab";
@@ -528,58 +530,70 @@
             this.AdminTab.Text = "관리자모드";
             this.AdminTab.UseVisualStyleBackColor = true;
             // 
-            // imageList1
+            // pwChange
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.pwChange.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pwChange.Location = new System.Drawing.Point(494, 365);
+            this.pwChange.Name = "pwChange";
+            this.pwChange.Size = new System.Drawing.Size(122, 36);
+            this.pwChange.TabIndex = 5;
+            this.pwChange.Text = "비밀번호 변경";
+            this.pwChange.UseVisualStyleBackColor = true;
+            this.pwChange.Click += new System.EventHandler(this.pwChange_Click);
+            // 
+            // login
+            // 
+            this.login.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.login.Location = new System.Drawing.Point(370, 365);
+            this.login.Name = "login";
+            this.login.Size = new System.Drawing.Size(122, 36);
+            this.login.TabIndex = 4;
+            this.login.Text = "로그인";
+            this.login.UseVisualStyleBackColor = true;
+            this.login.Click += new System.EventHandler(this.login_Click);
+            // 
+            // pwBox
+            // 
+            this.pwBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pwBox.Location = new System.Drawing.Point(370, 302);
+            this.pwBox.Name = "pwBox";
+            this.pwBox.Size = new System.Drawing.Size(246, 35);
+            this.pwBox.TabIndex = 3;
+            this.pwBox.UseSystemPasswordChar = true;
+            // 
+            // idBox
+            // 
+            this.idBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.idBox.Location = new System.Drawing.Point(370, 254);
+            this.idBox.Name = "idBox";
+            this.idBox.Size = new System.Drawing.Size(246, 35);
+            this.idBox.TabIndex = 2;
+            // 
+            // pw
+            // 
+            this.pw.AutoSize = true;
+            this.pw.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.pw.Location = new System.Drawing.Point(197, 305);
+            this.pw.Name = "pw";
+            this.pw.Size = new System.Drawing.Size(137, 24);
+            this.pw.TabIndex = 1;
+            this.pw.Text = "PASSWORD";
             // 
             // id
             // 
             this.id.AutoSize = true;
             this.id.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.id.Location = new System.Drawing.Point(275, 179);
+            this.id.Location = new System.Drawing.Point(197, 257);
             this.id.Name = "id";
             this.id.Size = new System.Drawing.Size(29, 24);
             this.id.TabIndex = 0;
             this.id.Text = "ID";
             // 
-            // password
+            // imageList1
             // 
-            this.password.AutoSize = true;
-            this.password.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.password.Location = new System.Drawing.Point(275, 227);
-            this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(137, 24);
-            this.password.TabIndex = 1;
-            this.password.Text = "PASSWORD";
-            // 
-            // idBox
-            // 
-            this.idBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.idBox.Location = new System.Drawing.Point(448, 176);
-            this.idBox.Name = "idBox";
-            this.idBox.Size = new System.Drawing.Size(246, 35);
-            this.idBox.TabIndex = 2;
-            // 
-            // passwordBox
-            // 
-            this.passwordBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.passwordBox.Location = new System.Drawing.Point(448, 224);
-            this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(246, 35);
-            this.passwordBox.TabIndex = 3;
-            // 
-            // login
-            // 
-            this.login.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.login.Location = new System.Drawing.Point(449, 274);
-            this.login.Name = "login";
-            this.login.Size = new System.Drawing.Size(244, 36);
-            this.login.TabIndex = 4;
-            this.login.Text = "로그인";
-            this.login.UseVisualStyleBackColor = true;
-            this.login.Click += new System.EventHandler(this.login_Click);
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Form1
             // 
@@ -653,10 +667,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label id;
-        private System.Windows.Forms.Label password;
-        private System.Windows.Forms.TextBox passwordBox;
+        private System.Windows.Forms.Label pw;
+        private System.Windows.Forms.TextBox pwBox;
         private System.Windows.Forms.TextBox idBox;
         private System.Windows.Forms.Button login;
+        private System.Windows.Forms.Button pwChange;
     }
 }
 

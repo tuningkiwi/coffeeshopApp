@@ -330,7 +330,7 @@ namespace coffeeshop
         {
             tabControl.SelectedTab = payTab;
 
-            pictureBox2.Image = new Bitmap(global::coffeeshop.Properties.Resources.PayQR2, new Size(250, 310));
+            pictureBox2.Image = new Bitmap(global::coffeeshop.Properties.Resources.PayQR2, new Size(500, 610));
             
             printTotal();
             List<String> result = printTotal();
@@ -342,29 +342,53 @@ namespace coffeeshop
         /*************************************/
         //           관리자모드               //
         /*************************************/
-        //사용자 id/password 입력받아 메시지띄우기
+        // 로그인과 비밀번호 변경하기
 
-        private const string CorrectUsername = "admin2";
-        private const string CorrectPassword = "1234";
+        private const string CorrectUsername = "admin2";//초기id
+        private const string CorrectPw = "1234";        //초기비번
+        private bool loggedIn = false;
 
         private void login_Click(object sender, EventArgs e)
         {
             string enteredUsername = idBox.Text;
-            string enteredPassword = passwordBox.Text;
+            string enteredPw = pwBox.Text;
 
-            if (enteredUsername == CorrectUsername && enteredPassword == CorrectPassword)
+            if (enteredUsername == CorrectUsername && enteredPw == CorrectPw)
             {
                 // 로그인 성공
                 MessageBox.Show("로그인 되었습니다");
+                loggedIn = true;
             }
             else
             {
                 // 로그인 실패
-                MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다", "false", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                loggedIn = false;
             }
+        }
 
+        private void pwChange_Click(object sender, EventArgs e)
+        {
+            if(loggedIn)// 로그인 성공하면
+            {
+                OpenPwChangeForm();
+            }
+            else
+            {
+                MessageBox.Show("먼저 로그인하세요");
+            }
         }
         
+        private void OpenPwChangeForm()
+        {
+            pwChange newPwChange = new pwChange();
+            newPwChange.ShowDialog();
+
+            string newPw = newPwChange.GetNewPw();
+            string confirmPw = newPwChange.GetConfirmPw();
+
+        }       
+
 
         /*************************************/
         //           취소하기                //
@@ -605,8 +629,9 @@ namespace coffeeshop
 
 
         }
+           
 
-        
+
 
         //private void deleteRowButton_Click(object sender, EventArgs e)
         //{
