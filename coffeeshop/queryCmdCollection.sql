@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[completed_order_list] (
 	[menu_id]       INT NULL,
     [hot_cold]        NCHAR (10)    NULL,
     [quantity] INT NULL,
-    [payment_sign]    IMAGE         NULL
+    
 );
 
 CREATE TABLE [dbo].[current_order_list] (
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[current_order_list] (
     [hot_cold]        NCHAR (10)    NULL,
     [size]            NCHAR (10)    NULL,
     [quantity] INT NULL,
-    [payment_sign]    IMAGE         NULL
+    
 );
 
 CREATE TABLE [dbo].[item_price] (
@@ -36,10 +36,12 @@ CREATE TABLE [dbo].[waiting_order_list] (
     [order_id]        INT           NULL,
     [order_detail_id] INT           NULL,
     [take_out_in]     NCHAR (10)    NULL,
-	[menu_id]       INT NULL,
+    [menu_id] INT NULL,
+    [menu_name]       NVARCHAR (30) NULL,
     [hot_cold]        NCHAR (10)    NULL,
-    [quantity] INT NULL,
-    [payment_sign]    IMAGE         NULL
+    [size]            NCHAR (10)    NULL,
+    [quantity] INT NULL
+    
 );
 
 
@@ -129,6 +131,8 @@ select * from current_order_list;
 /*Current_order_list >>copy>>>Waiting_order_list  이후 current_order_list clear*/
 insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [hot_cold],[quantity])
     select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from current_order_list;
+
+insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, quantity from current_order_list;
 
 delete from current_order_list;
 

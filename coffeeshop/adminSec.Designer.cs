@@ -63,10 +63,11 @@
             // 
             // totalSalesBtn
             // 
+            this.totalSalesBtn.AutoSize = true;
             this.totalSalesBtn.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.totalSalesBtn.Location = new System.Drawing.Point(539, 35);
+            this.totalSalesBtn.Location = new System.Drawing.Point(539, 48);
             this.totalSalesBtn.Name = "totalSalesBtn";
-            this.totalSalesBtn.Size = new System.Drawing.Size(245, 50);
+            this.totalSalesBtn.Size = new System.Drawing.Size(130, 24);
             this.totalSalesBtn.TabIndex = 2;
             this.totalSalesBtn.Text = "누적 매출: ";
             this.totalSalesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -112,6 +113,7 @@
             this.Name = "adminSec";
             this.Text = "관리자 모드";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

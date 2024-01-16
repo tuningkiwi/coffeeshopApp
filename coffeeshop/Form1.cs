@@ -347,7 +347,7 @@ namespace coffeeshop
             sqlCommand.ExecuteNonQuery();
 
             /******결제가 완료되면, menu_id 업데이트와 현재 주문목록이 확정되어 처리대기중인 주문리스트로 복사됨  */
-            sqlCommand.CommandText = $"insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [hot_cold],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from current_order_list;";
+            sqlCommand.CommandText = $"insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list";
             sqlCommand.ExecuteNonQuery();
 
             //주문 대기 번호 출력 
@@ -538,7 +538,7 @@ namespace coffeeshop
 
 
             //데이터 그리드 row column 크기 조정 불가 
-            _gridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            _gridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             _gridView.AllowUserToResizeColumns = false;
             _gridView.ColumnHeadersHeightSizeMode =
                 DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -550,21 +550,21 @@ namespace coffeeshop
 
             for (int i = 0; i < _gridView.Columns.Count; i++)
             {
-                _gridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                _gridView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 _gridView.Columns[i].Resizable = DataGridViewTriState.False;
                 _gridView.Columns[i].ReadOnly = true;
 
 
-                //메뉴이름 너비 
-                if (i == 0) { _gridView.Columns[i].Width = 300; }
-                else if (i == 4 || i == 6)
-                { //버튼 위치 너비 
-                    _gridView.Columns[i].Width = 70;
-                }
-                else
-                {//나머지 크기 
-                    _gridView.Columns[i].Width = 150;
-                }
+                ////메뉴이름 너비 
+                //if (i == 0) { _gridView.Columns[i].Width = 300; }
+                //else if (i == 4 || i == 6)
+                //{ //버튼 위치 너비 
+                //    _gridView.Columns[i].Width = 70;
+                //}
+                //else
+                //{//나머지 크기 
+                //    _gridView.Columns[i].Width = 150;
+                //}
                 //_gridView.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 //그리드 셀 내용 오른쪽 정렬 
                 _gridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
