@@ -230,7 +230,7 @@ namespace coffeeshop
             // 주문 내역 하단에 띄우기 
             sqlCommand.CommandText = $"select menu_name, hot_cold, size, quantity from current_order_list ";
             SqlDataReader rdr2 = sqlCommand.ExecuteReader();
-            string orderContents = "";
+            string orderContents = "주문내역\r\n";
             while (rdr2.Read())
             {
                 orderContents += rdr2["menu_name"].ToString() + "     " + rdr2["hot_cold"].ToString() + "     "

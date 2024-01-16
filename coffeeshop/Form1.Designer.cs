@@ -36,7 +36,6 @@
             this.toGoBtn = new System.Windows.Forms.Button();
             this.forHereBtn = new System.Windows.Forms.Button();
             this.menuTab = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,7 +76,6 @@
             this.adminLogin = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.label8 = new System.Windows.Forms.Label();
             this.orderTabCtrl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
@@ -105,7 +103,7 @@
             this.orderTabCtrl.Controls.Add(this.AdminTab);
             this.orderTabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderTabCtrl.Location = new System.Drawing.Point(0, 0);
-            this.orderTabCtrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.orderTabCtrl.Margin = new System.Windows.Forms.Padding(4);
             this.orderTabCtrl.Name = "orderTabCtrl";
             this.orderTabCtrl.SelectedIndex = 0;
             this.orderTabCtrl.Size = new System.Drawing.Size(1899, 1024);
@@ -116,9 +114,9 @@
             // 
             this.welcomeTab.Controls.Add(this.welcomeImgButton);
             this.welcomeTab.Location = new System.Drawing.Point(4, 28);
-            this.welcomeTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.welcomeTab.Margin = new System.Windows.Forms.Padding(4);
             this.welcomeTab.Name = "welcomeTab";
-            this.welcomeTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.welcomeTab.Padding = new System.Windows.Forms.Padding(4);
             this.welcomeTab.Size = new System.Drawing.Size(1891, 992);
             this.welcomeTab.TabIndex = 0;
             this.welcomeTab.Text = "웰컴";
@@ -131,7 +129,7 @@
             this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.welcomeImgButton.Location = new System.Drawing.Point(4, 4);
-            this.welcomeImgButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.welcomeImgButton.Margin = new System.Windows.Forms.Padding(4);
             this.welcomeImgButton.Name = "welcomeImgButton";
             this.welcomeImgButton.Size = new System.Drawing.Size(1883, 984);
             this.welcomeImgButton.TabIndex = 0;
@@ -143,9 +141,9 @@
             this.takeOutTab.Controls.Add(this.toGoBtn);
             this.takeOutTab.Controls.Add(this.forHereBtn);
             this.takeOutTab.Location = new System.Drawing.Point(4, 28);
-            this.takeOutTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.takeOutTab.Margin = new System.Windows.Forms.Padding(4);
             this.takeOutTab.Name = "takeOutTab";
-            this.takeOutTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.takeOutTab.Padding = new System.Windows.Forms.Padding(4);
             this.takeOutTab.Size = new System.Drawing.Size(1891, 992);
             this.takeOutTab.TabIndex = 1;
             this.takeOutTab.Text = "테이크아웃/인";
@@ -154,7 +152,7 @@
             // toGoBtn
             // 
             this.toGoBtn.Location = new System.Drawing.Point(844, 120);
-            this.toGoBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.toGoBtn.Margin = new System.Windows.Forms.Padding(4);
             this.toGoBtn.Name = "toGoBtn";
             this.toGoBtn.Size = new System.Drawing.Size(597, 602);
             this.toGoBtn.TabIndex = 1;
@@ -165,7 +163,7 @@
             // forHereBtn
             // 
             this.forHereBtn.Location = new System.Drawing.Point(143, 120);
-            this.forHereBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.forHereBtn.Margin = new System.Windows.Forms.Padding(4);
             this.forHereBtn.Name = "forHereBtn";
             this.forHereBtn.Size = new System.Drawing.Size(597, 602);
             this.forHereBtn.TabIndex = 0;
@@ -176,7 +174,6 @@
             // menuTab
             // 
             this.menuTab.AutoScroll = true;
-            this.menuTab.Controls.Add(this.label5);
             this.menuTab.Controls.Add(this.label4);
             this.menuTab.Controls.Add(this.label3);
             this.menuTab.Controls.Add(this.label2);
@@ -193,21 +190,12 @@
             this.menuTab.Controls.Add(this.latBtn);
             this.menuTab.Controls.Add(this.ameBtn);
             this.menuTab.Location = new System.Drawing.Point(4, 28);
-            this.menuTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.menuTab.Margin = new System.Windows.Forms.Padding(4);
             this.menuTab.Name = "menuTab";
             this.menuTab.Size = new System.Drawing.Size(1891, 992);
             this.menuTab.TabIndex = 2;
             this.menuTab.Text = "메뉴";
             this.menuTab.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1104, 626);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 18);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "label5";
             // 
             // label4
             // 
@@ -285,7 +273,7 @@
             this.menu_cart.BackColor = System.Drawing.Color.SeaShell;
             this.menu_cart.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.menu_cart.Location = new System.Drawing.Point(1503, 795);
-            this.menu_cart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.menu_cart.Margin = new System.Windows.Forms.Padding(4);
             this.menu_cart.Name = "menu_cart";
             this.menu_cart.Size = new System.Drawing.Size(253, 110);
             this.menu_cart.TabIndex = 4;
@@ -298,7 +286,7 @@
             this.goToBegin.BackColor = System.Drawing.Color.SeaShell;
             this.goToBegin.Font = new System.Drawing.Font("D2Coding", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.goToBegin.Location = new System.Drawing.Point(1503, 656);
-            this.goToBegin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.goToBegin.Margin = new System.Windows.Forms.Padding(4);
             this.goToBegin.Name = "goToBegin";
             this.goToBegin.Size = new System.Drawing.Size(253, 110);
             this.goToBegin.TabIndex = 1;
@@ -311,7 +299,7 @@
             this.blueyogurtBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.blueyogurtBtn.Image = global::coffeeshop.Properties.Resources.bluberryyogurt;
             this.blueyogurtBtn.Location = new System.Drawing.Point(1494, 100);
-            this.blueyogurtBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.blueyogurtBtn.Margin = new System.Windows.Forms.Padding(4);
             this.blueyogurtBtn.Name = "blueyogurtBtn";
             this.blueyogurtBtn.Size = new System.Drawing.Size(276, 400);
             this.blueyogurtBtn.TabIndex = 8;
@@ -324,7 +312,7 @@
             this.royalBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.royalBtn.Image = global::coffeeshop.Properties.Resources.roaylmilktea;
             this.royalBtn.Location = new System.Drawing.Point(939, 100);
-            this.royalBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.royalBtn.Margin = new System.Windows.Forms.Padding(4);
             this.royalBtn.Name = "royalBtn";
             this.royalBtn.Size = new System.Drawing.Size(276, 400);
             this.royalBtn.TabIndex = 7;
@@ -337,7 +325,7 @@
             this.strawberrylatteBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.strawberrylatteBtn.Image = global::coffeeshop.Properties.Resources.strawberrylatte;
             this.strawberrylatteBtn.Location = new System.Drawing.Point(1216, 100);
-            this.strawberrylatteBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.strawberrylatteBtn.Margin = new System.Windows.Forms.Padding(4);
             this.strawberrylatteBtn.Name = "strawberrylatteBtn";
             this.strawberrylatteBtn.Size = new System.Drawing.Size(276, 400);
             this.strawberrylatteBtn.TabIndex = 6;
@@ -350,7 +338,7 @@
             this.vlaBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.vlaBtn.Image = global::coffeeshop.Properties.Resources.vanilalatte;
             this.vlaBtn.Location = new System.Drawing.Point(660, 100);
-            this.vlaBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.vlaBtn.Margin = new System.Windows.Forms.Padding(4);
             this.vlaBtn.Name = "vlaBtn";
             this.vlaBtn.Size = new System.Drawing.Size(276, 400);
             this.vlaBtn.TabIndex = 2;
@@ -363,7 +351,7 @@
             this.latBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.latBtn.Image = global::coffeeshop.Properties.Resources.latte;
             this.latBtn.Location = new System.Drawing.Point(381, 100);
-            this.latBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.latBtn.Margin = new System.Windows.Forms.Padding(4);
             this.latBtn.Name = "latBtn";
             this.latBtn.Size = new System.Drawing.Size(276, 400);
             this.latBtn.TabIndex = 1;
@@ -376,7 +364,7 @@
             this.ameBtn.Font = new System.Drawing.Font("Gulim", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ameBtn.Image = global::coffeeshop.Properties.Resources.americano;
             this.ameBtn.Location = new System.Drawing.Point(104, 100);
-            this.ameBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ameBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ameBtn.Name = "ameBtn";
             this.ameBtn.Size = new System.Drawing.Size(276, 400);
             this.ameBtn.TabIndex = 0;
@@ -388,7 +376,7 @@
             // 
             this.cartTab.Controls.Add(this.splitContainer1);
             this.cartTab.Location = new System.Drawing.Point(4, 28);
-            this.cartTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cartTab.Margin = new System.Windows.Forms.Padding(4);
             this.cartTab.Name = "cartTab";
             this.cartTab.Size = new System.Drawing.Size(1891, 992);
             this.cartTab.TabIndex = 3;
@@ -479,7 +467,7 @@
             this.payTab.Controls.Add(this.pay_CancelBtn);
             this.payTab.Controls.Add(this.pay_priceLb);
             this.payTab.Location = new System.Drawing.Point(4, 28);
-            this.payTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.payTab.Margin = new System.Windows.Forms.Padding(4);
             this.payTab.Name = "payTab";
             this.payTab.Size = new System.Drawing.Size(1891, 992);
             this.payTab.TabIndex = 4;
@@ -489,7 +477,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(84, 162);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(767, 730);
             this.pictureBox1.TabIndex = 3;
@@ -535,9 +523,9 @@
             this.orderCompletedTab.Controls.Add(this.orderNumberLb1);
             this.orderCompletedTab.Controls.Add(this.button1);
             this.orderCompletedTab.Location = new System.Drawing.Point(4, 28);
-            this.orderCompletedTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.orderCompletedTab.Margin = new System.Windows.Forms.Padding(4);
             this.orderCompletedTab.Name = "orderCompletedTab";
-            this.orderCompletedTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.orderCompletedTab.Padding = new System.Windows.Forms.Padding(4);
             this.orderCompletedTab.Size = new System.Drawing.Size(1891, 992);
             this.orderCompletedTab.TabIndex = 6;
             this.orderCompletedTab.Text = "주문완료";
@@ -558,7 +546,7 @@
             // 
             this.completed_gotoStartBtn.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.completed_gotoStartBtn.Location = new System.Drawing.Point(743, 729);
-            this.completed_gotoStartBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.completed_gotoStartBtn.Margin = new System.Windows.Forms.Padding(4);
             this.completed_gotoStartBtn.Name = "completed_gotoStartBtn";
             this.completed_gotoStartBtn.Size = new System.Drawing.Size(214, 92);
             this.completed_gotoStartBtn.TabIndex = 2;
@@ -581,7 +569,7 @@
             // 
             this.button1.Image = global::coffeeshop.Properties.Resources.receipt;
             this.button1.Location = new System.Drawing.Point(597, 214);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(497, 506);
             this.button1.TabIndex = 1;
@@ -589,14 +577,13 @@
             // 
             // AdminTab
             // 
-            this.AdminTab.Controls.Add(this.label8);
             this.AdminTab.Controls.Add(this.label7);
             this.AdminTab.Controls.Add(this.idLB);
             this.AdminTab.Controls.Add(this.pwBox);
             this.AdminTab.Controls.Add(this.idBox);
             this.AdminTab.Controls.Add(this.adminLogin);
             this.AdminTab.Location = new System.Drawing.Point(4, 28);
-            this.AdminTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AdminTab.Margin = new System.Windows.Forms.Padding(4);
             this.AdminTab.Name = "AdminTab";
             this.AdminTab.Size = new System.Drawing.Size(1891, 992);
             this.AdminTab.TabIndex = 5;
@@ -629,7 +616,7 @@
             // 
             this.pwBox.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pwBox.Location = new System.Drawing.Point(749, 388);
-            this.pwBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pwBox.Margin = new System.Windows.Forms.Padding(4);
             this.pwBox.Name = "pwBox";
             this.pwBox.Size = new System.Drawing.Size(390, 49);
             this.pwBox.TabIndex = 2;
@@ -638,7 +625,7 @@
             // 
             this.idBox.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.idBox.Location = new System.Drawing.Point(749, 276);
-            this.idBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.idBox.Margin = new System.Windows.Forms.Padding(4);
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(390, 49);
             this.idBox.TabIndex = 1;
@@ -647,7 +634,7 @@
             // 
             this.adminLogin.Font = new System.Drawing.Font("Gulim", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.adminLogin.Location = new System.Drawing.Point(899, 514);
-            this.adminLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adminLogin.Margin = new System.Windows.Forms.Padding(4);
             this.adminLogin.Name = "adminLogin";
             this.adminLogin.Size = new System.Drawing.Size(241, 72);
             this.adminLogin.TabIndex = 0;
@@ -661,15 +648,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(598, 156);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 18);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "label8";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -677,7 +655,7 @@
             this.ClientSize = new System.Drawing.Size(1899, 1024);
             this.Controls.Add(this.orderTabCtrl);
             this.Location = new System.Drawing.Point(10, 10);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "유동 커피숍";
@@ -741,7 +719,6 @@
         private System.Windows.Forms.Button payCompleted;
         private System.Windows.Forms.Button pay_CancelBtn;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button adminLogin;
         private System.Windows.Forms.TabPage orderCompletedTab;
@@ -755,7 +732,6 @@
         private System.Windows.Forms.TextBox idBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label idLB;
-        private System.Windows.Forms.Label label8;
     }
 }
 

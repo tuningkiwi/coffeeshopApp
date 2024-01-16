@@ -60,6 +60,10 @@ namespace coffeeshop
 
         }
 
+
+
+
+
         // 사장님이 주문이 완성되고, 완료 버튼을 누를 때,
         // 대기중인 주문 내역에서 삭제되고, 완료된 주문 리스트로 이동한다 
         private void dataGridView_admin_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -414,6 +418,14 @@ namespace coffeeshop
             {
                 MessageBox.Show("비밀번호 재설정 완료");
             }
+        }
+
+
+        //주문자가 픽업완료함 주문 리스트 출력 
+        // 향후 추가 예정 
+        private void completedListBtn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 

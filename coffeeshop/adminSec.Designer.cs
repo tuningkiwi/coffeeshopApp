@@ -208,6 +208,7 @@
             this.completedListBtn.TabIndex = 1;
             this.completedListBtn.Text = "완료주문 확인하기";
             this.completedListBtn.UseVisualStyleBackColor = true;
+            this.completedListBtn.Click += new System.EventHandler(this.completedListBtn_Click);
             // 
             // waitingListBtn
             // 
