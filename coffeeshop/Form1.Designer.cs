@@ -66,6 +66,11 @@
             this.pay_priceLb = new System.Windows.Forms.Label();
             this.AdminTab = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.id = new System.Windows.Forms.Label();
+            this.password = new System.Windows.Forms.Label();
+            this.idBox = new System.Windows.Forms.TextBox();
+            this.passwordBox = new System.Windows.Forms.TextBox();
+            this.login = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
             this.takeOutTab.SuspendLayout();
@@ -78,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.payTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.AdminTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -510,6 +516,11 @@
             // 
             // AdminTab
             // 
+            this.AdminTab.Controls.Add(this.login);
+            this.AdminTab.Controls.Add(this.passwordBox);
+            this.AdminTab.Controls.Add(this.idBox);
+            this.AdminTab.Controls.Add(this.password);
+            this.AdminTab.Controls.Add(this.id);
             this.AdminTab.Location = new System.Drawing.Point(4, 22);
             this.AdminTab.Name = "AdminTab";
             this.AdminTab.Size = new System.Drawing.Size(1321, 657);
@@ -522,6 +533,53 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // id
+            // 
+            this.id.AutoSize = true;
+            this.id.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.id.Location = new System.Drawing.Point(275, 179);
+            this.id.Name = "id";
+            this.id.Size = new System.Drawing.Size(29, 24);
+            this.id.TabIndex = 0;
+            this.id.Text = "ID";
+            // 
+            // password
+            // 
+            this.password.AutoSize = true;
+            this.password.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.password.Location = new System.Drawing.Point(275, 227);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(137, 24);
+            this.password.TabIndex = 1;
+            this.password.Text = "PASSWORD";
+            // 
+            // idBox
+            // 
+            this.idBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.idBox.Location = new System.Drawing.Point(448, 176);
+            this.idBox.Name = "idBox";
+            this.idBox.Size = new System.Drawing.Size(246, 35);
+            this.idBox.TabIndex = 2;
+            // 
+            // passwordBox
+            // 
+            this.passwordBox.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.passwordBox.Location = new System.Drawing.Point(448, 224);
+            this.passwordBox.Name = "passwordBox";
+            this.passwordBox.Size = new System.Drawing.Size(246, 35);
+            this.passwordBox.TabIndex = 3;
+            // 
+            // login
+            // 
+            this.login.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.login.Location = new System.Drawing.Point(449, 274);
+            this.login.Name = "login";
+            this.login.Size = new System.Drawing.Size(244, 36);
+            this.login.TabIndex = 4;
+            this.login.Text = "로그인";
+            this.login.UseVisualStyleBackColor = true;
+            this.login.Click += new System.EventHandler(this.login_Click);
             // 
             // Form1
             // 
@@ -549,6 +607,8 @@
             this.payTab.ResumeLayout(false);
             this.payTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.AdminTab.ResumeLayout(false);
+            this.AdminTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -592,6 +652,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label id;
+        private System.Windows.Forms.Label password;
+        private System.Windows.Forms.TextBox passwordBox;
+        private System.Windows.Forms.TextBox idBox;
+        private System.Windows.Forms.Button login;
     }
 }
 

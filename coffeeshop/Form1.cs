@@ -340,6 +340,33 @@ namespace coffeeshop
         }
 
         /*************************************/
+        //           관리자모드               //
+        /*************************************/
+        //사용자 id/password 입력받아 메시지띄우기
+
+        private const string CorrectUsername = "admin2";
+        private const string CorrectPassword = "1234";
+
+        private void login_Click(object sender, EventArgs e)
+        {
+            string enteredUsername = idBox.Text;
+            string enteredPassword = passwordBox.Text;
+
+            if (enteredUsername == CorrectUsername && enteredPassword == CorrectPassword)
+            {
+                // 로그인 성공
+                MessageBox.Show("로그인 되었습니다");
+            }
+            else
+            {
+                // 로그인 실패
+                MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        
+
+        /*************************************/
         //           취소하기                //
         /*************************************/
 
@@ -578,6 +605,8 @@ namespace coffeeshop
 
 
         }
+
+        
 
         //private void deleteRowButton_Click(object sender, EventArgs e)
         //{

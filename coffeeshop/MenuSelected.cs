@@ -47,7 +47,7 @@ namespace coffeeshop
                     subOrder.menuName = "strawberry_latte";
                     HOT.Visible = false;
                     COLD.BackColor = Color.DodgerBlue;
-                    subOrder.hotCold = "COLD";
+                    subOrder.hotCold = "cold";
                     break;
                 case MenuID.Blu:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.bluberryyogurt;
@@ -55,7 +55,7 @@ namespace coffeeshop
                     subOrder.menuName = "blueberry_yogurt";
                     HOT.Visible = false;
                     COLD.BackColor = Color.DodgerBlue;
-                    subOrder.hotCold = "COLD";
+                    subOrder.hotCold = "cold";
                     break;
                 case MenuID.Roy:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.roaylmilktea;
@@ -63,7 +63,7 @@ namespace coffeeshop
                     subOrder.menuName = "royalmilktea";
                     HOT.Visible = false;
                     COLD.BackColor = Color.DodgerBlue;
-                    subOrder.hotCold = "COLD";
+                    subOrder.hotCold = "cold";
                     break;
                 default:
                     break;
@@ -93,14 +93,14 @@ namespace coffeeshop
         private void HOT_Click(object sender, EventArgs e)
         {
             HOT.BackColor = Color.Red;           
-            subOrder.hotCold = "HOT";
+            subOrder.hotCold = "hot";
             COLD.BackColor = Color.LightBlue;
         }
 
         private void COLD_Click(object sender, EventArgs e)
         {
             COLD.BackColor = Color.DodgerBlue;
-            subOrder.hotCold = "COLD";
+            subOrder.hotCold = "cold";
             HOT.BackColor = Color.LightCoral;
         }
 
