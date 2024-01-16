@@ -58,6 +58,12 @@
     <Compile Include="adminSec.Designer.cs">
       <DependentUpon>adminSec.cs</DependentUpon>
     </Compile>
+    <Compile Include="termConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="termConfig.Designer.cs">
+      <DependentUpon>termConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuSelected.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="termConfig.resx">
+      <DependentUpon>termConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resource\receipt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\PayQR2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

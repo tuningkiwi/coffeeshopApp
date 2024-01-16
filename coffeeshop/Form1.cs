@@ -302,12 +302,44 @@ namespace coffeeshop
         {
             orderTabCtrl.SelectedTab = payTab;
 
+            pictureBox1.Image = new Bitmap(global::coffeeshop.Properties.Resources.PayQR2, new Size(500, 610));
+
             printTotal();
             List<String> result = printTotal();
             pay_priceLb.Font = new System.Drawing.Font("D2Coding", 24F);
             pay_priceLb.Text = $"총{result[0]}개/   {result[1]}원";
 
         }
+
+        /*************************************/
+        //           관리자모드               //
+        /*************************************/
+        // 로그인과 비밀번호 변경하기
+
+        private const string CorrectUsername = "admin2";//초기id
+        private const string CorrectPw = "1234";        //초기비번
+        private bool loggedIn = false;
+
+        private void login_Click(object sender, EventArgs e)
+        {
+            string enteredUsername = idBox.Text;
+            string enteredPw = pwBox.Text;
+
+            if (enteredUsername == CorrectUsername && enteredPw == CorrectPw)
+            {
+                // 로그인 성공
+                MessageBox.Show("로그인 되었습니다");
+                loggedIn = true;
+            }
+            else
+            {
+                // 로그인 실패
+                MessageBox.Show("아이디 또는 비밀번호가 올바르지 않습니다", "false", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                loggedIn = false;
+            }
+        }
+
+
 
         /*************************************/
         //           취소하기                //
@@ -399,9 +431,9 @@ namespace coffeeshop
 
         private void adminLogin_Click(object sender, EventArgs e)
         {
-            adminSec admin = new adminSec();
 
-            
+
+            adminSec admin = new adminSec();
 
             DialogResult dResult = admin.ShowDialog();
             if (dResult == DialogResult.OK)

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Security.Policy;
@@ -30,12 +31,19 @@ namespace coffeeshop
             sqlConnect.ConnectionString = sConn;
             sqlConnect.Open();
             sqlCommand.Connection = sqlConnect;
+
+            bell_1.Visible = false;
+            bell_2.Visible = false;
+            bell_3.Visible = false;
+            bell_4.Visible = false;
+            bell_5.Visible = false;
+
         }
 
         private void waitingListBtn_Click(object sender, EventArgs e)
         {
             dataGridView_admin.DefaultCellStyle.Font = new Font("D2Coding", 18);
-            
+
             string cmd = "select * from waiting_order_list ";
             //frm.orderListShow(sender, e, cmd, dataGridView_admin);
             orderListShow(sender, e, cmd, dataGridView_admin);
@@ -53,12 +61,12 @@ namespace coffeeshop
 
             orderListShow(sender, e, cmd, dataGridView_admin);
             printTotal();
-          
+
         }
 
 
         // 매출 총액 출력 
-        public void  printTotal()
+        public void printTotal()
         {
             totalSalesBtn.Font = new System.Drawing.Font("D2Coding", 24F);
             //sqlCommand.CommandText = "select sum(it.price*wait.quantity) as total_sales from waiting_order_list wait INNER JOIN item_price it on wait.menu_id = it.menu_id";
@@ -80,7 +88,7 @@ namespace coffeeshop
             }
             rdr2.Close();
 
-            totalSalesBtn.Text = $"총 매출 : {strPrice}원"; 
+            totalSalesBtn.Text = $"총 매출 : {strPrice}원";
 
         }
 
@@ -170,7 +178,7 @@ namespace coffeeshop
 
             //x버튼 //index 10  
             DataGridViewButtonColumn quantityControl3 = new DataGridViewButtonColumn();
-           
+
             quantityControl3.HeaderText = "삭제";
             quantityControl3.Text = "삭제";
             quantityControl3.Name = "Del";
@@ -241,7 +249,7 @@ namespace coffeeshop
             //+버튼 눌렀을 때 update 
             if (e.ColumnIndex == _gridView.Columns["Add"].Index)
             {//6번 
-                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;             
+                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
 
                 string quantityAdd = $"update waiting_order_list set quantity=quantity+1 " +
                     $"where order_detail_id={_order_detail_id}";
@@ -277,5 +285,93 @@ namespace coffeeshop
         }
 
 
+
+        string StrComm = "";
+
+        void OpenPort()
+        {
+            serialPort1.Open();
+            sbLabel1.Text = StrComm;
+            sbLabel1.BackColor = Color.Green;
+        }
+
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            //read 
+            string str = serialPort1.ReadExisting();
+            //AddText(str);
+
+            //write
+
+        }
+
+        // pc >> 터미널로 보내기 
+        private void cmdSend_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "3";
+            serialPort1.Write(sendCmd);
+        }
+
+        private void portOpenBtn_Click(object sender, EventArgs e)
+        {
+            termConfig dlg = new termConfig(2, 0, 0, 0, 1);//초기값 전달 
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                serialPort1.PortName = dlg.comPortBox.Text;
+                serialPort1.BaudRate = int.Parse(dlg.baudRateBox.Text);
+
+                //parity는 프로그램에 저장된 enum 타입이다
+                //그래서 System.IO.Ports.Parity형으로 전환 필요 
+                serialPort1.Parity = (System.IO.Ports.Parity)dlg.parityBox.SelectedIndex;
+                serialPort1.DataBits = int.Parse(dlg.dataBitsBox.Text);
+                serialPort1.StopBits = (System.IO.Ports.StopBits)dlg.stopBitsBox.SelectedIndex;
+                //오픈 포트 명령 문자열 
+                StrComm = $"{serialPort1.PortName}:{serialPort1.BaudRate}{dlg.parityBox.Text[0]}{serialPort1.DataBits}{dlg.dataBitsBox.Text}";
+                OpenPort();
+
+                bell_1.Visible = true;
+                bell_2.Visible = true;
+                bell_3.Visible = true;
+                bell_4.Visible = true;
+                bell_5.Visible = true;
+            }
+        }
+
+        
+
+        private void bell_1_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "1";
+            serialPort1.Write(sendCmd);
+        }
+
+        private void bell_2_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "2";
+            serialPort1.Write(sendCmd);
+        }
+
+        private void bell_3_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "3";
+            serialPort1.Write(sendCmd);
+        }
+
+        private void bell_4_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "4";
+            serialPort1.Write(sendCmd);
+        }
+
+        private void bell_5_Click(object sender, EventArgs e)
+        {
+            string sendCmd = "5";
+            serialPort1.Write(sendCmd);
+        }
+
+        
     }
+
+
 }
