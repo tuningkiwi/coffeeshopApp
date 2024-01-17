@@ -15,15 +15,18 @@ using System.Windows.Forms;
 
 namespace coffeeshop
 {
+
+
     public partial class adminSec : Form
     {
         //Form1 frm = new Form1();
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\orderListDB.mdf;Integrated Security=True;Connect Timeout=30";
+        
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
-
-        public adminSec()
+       
+        public adminSec(string userId)
         {
             InitializeComponent();
 
@@ -31,6 +34,9 @@ namespace coffeeshop
             sqlConnect.ConnectionString = sConn;
             sqlConnect.Open();
             sqlCommand.Connection = sqlConnect;
+
+            
+            idWelcomeLb.Text = $"{userId}님, 환영합니다";
 
             bell_1.Visible = false;
             bell_2.Visible = false;
@@ -40,6 +46,7 @@ namespace coffeeshop
 
         }
 
+        //현재 대기 중인 주문 내역을 보여준다 
         private void waitingListBtn_Click(object sender, EventArgs e)
         {
             dataGridView_admin.DefaultCellStyle.Font = new Font("D2Coding", 18);
@@ -53,6 +60,12 @@ namespace coffeeshop
 
         }
 
+
+
+
+
+        // 사장님이 주문이 완성되고, 완료 버튼을 누를 때,
+        // 대기중인 주문 내역에서 삭제되고, 완료된 주문 리스트로 이동한다 
         private void dataGridView_admin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             sub_dataGridView_CellClick(sender, e, dataGridView_admin);
@@ -69,14 +82,6 @@ namespace coffeeshop
         public void printTotal()
         {
             totalSalesBtn.Font = new System.Drawing.Font("D2Coding", 24F);
-            //sqlCommand.CommandText = "select sum(it.price*wait.quantity) as total_sales from waiting_order_list wait INNER JOIN item_price it on wait.menu_id = it.menu_id";
-            //SqlDataReader rdr2 = sqlCommand.ExecuteReader();
-            //int total_sales = 0;
-            //while (rdr2.Read())
-            //{
-            //    total_sales = Convert.ToInt32(rdr2["total_sales"].ToString());
-            //}
-            //rdr2.Close();
 
             sqlCommand.CommandText = "select sum(it.price*wait.quantity) as total_price from waiting_order_list wait INNER JOIN item_price it on wait.menu_id= it.menu_id";
             SqlDataReader rdr2 = sqlCommand.ExecuteReader();
@@ -130,10 +135,9 @@ namespace coffeeshop
         }
 
 
-        // CART TAB  DATA GRID VIEW 
+        // 현재 대기 중인 주문 리스트 확인 
         public void orderListShow(object sender, EventArgs e, string cmd, DataGridView _gridView)
         {
-
 
             /*주문내역 SHOW */
             string sql = cmd;
@@ -179,8 +183,8 @@ namespace coffeeshop
             //x버튼 //index 10  
             DataGridViewButtonColumn quantityControl3 = new DataGridViewButtonColumn();
 
-            quantityControl3.HeaderText = "삭제";
-            quantityControl3.Text = "삭제";
+            quantityControl3.HeaderText = "처리완료";
+            quantityControl3.Text = "완료";
             quantityControl3.Name = "Del";
             quantityControl3.UseColumnTextForButtonValue = true;
             _gridView.Columns.Add(quantityControl3);
@@ -203,19 +207,6 @@ namespace coffeeshop
                 _gridView.Columns[i].Resizable = DataGridViewTriState.False;
                 _gridView.Columns[i].ReadOnly = true;
 
-
-                ////메뉴이름 너비 
-                //if (i == 0) { _gridView.Columns[i].Width = 300; }
-                //else if (i == 4 || i == 6)
-                //{ //버튼 위치 너비 
-                //    _gridView.Columns[i].Width = 70;
-                //}
-                //else
-                //{//나머지 크기 
-                //    _gridView.Columns[i].Width = 150;
-                //}
-                //_gridView.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                //그리드 셀 내용 오른쪽 정렬 
                 _gridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 _gridView.DefaultCellStyle.Font = new Font("D2Coding", 18);
 
@@ -284,8 +275,6 @@ namespace coffeeshop
 
         }
 
-
-
         string StrComm = "";
 
         void OpenPort()
@@ -296,22 +285,65 @@ namespace coffeeshop
         }
 
 
+        Button stopBellNumber;
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             //read 
             string str = serialPort1.ReadExisting();
-            //AddText(str);
+            int bellNumber = int.Parse(str);
+            
+            
+            switch (bellNumber)
+            {
+                case 1:
+                    stopBellNumber = bell_1;
+                    break;
+                case 2:
+                    stopBellNumber = bell_2;
+                    break;
+                case 3:
+                    stopBellNumber = bell_3;
+                    break;
+                case 4:
+                    stopBellNumber = bell_4;
+                    break;
+                case 5:
+                    stopBellNumber = bell_5;
+                    break;
+                default 
+                    : break;
+
+            }
+
+            bell_off(str, stopBellNumber);
 
             //write
 
         }
 
-        // pc >> 터미널로 보내기 
-        private void cmdSend_Click(object sender, EventArgs e)
+        // c/c++ 함수 포인터  \
+        // bell_off 콜백함수 
+        delegate void bell_offCB(string s, Button btnName);
+
+        //serialPort1_DataReceived에 사용되는 
+        void bell_off(string s, Button bell)
         {
-            string sendCmd = "3";
-            serialPort1.Write(sendCmd);
+
+            if (bell.InvokeRequired)
+            {
+                bell_offCB cb = new bell_offCB(bell_off);
+                object[] arg = new object[] { s };// arg는 argument list  
+                Invoke(cb, arg); //재호출이 된다 
+                //재호출 되는 시점에서 tbTerm.InvokeRequired = false가 되고, 
+                //else 로 넘어간다 
+            }
+            else
+            {
+                bell.BackColor = SystemColors.Control;
+            }
+
         }
+
 
         private void portOpenBtn_Click(object sender, EventArgs e)
         {
@@ -342,35 +374,59 @@ namespace coffeeshop
 
         private void bell_1_Click(object sender, EventArgs e)
         {
+            bell_1.BackColor = Color.LightSalmon;
             string sendCmd = "1";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_2_Click(object sender, EventArgs e)
         {
+            bell_1.BackColor = Color.LightSalmon;
             string sendCmd = "2";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_3_Click(object sender, EventArgs e)
         {
+            bell_1.BackColor = Color.LightSalmon;
             string sendCmd = "3";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_4_Click(object sender, EventArgs e)
         {
+            bell_1.BackColor = Color.LightSalmon;
             string sendCmd = "4";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_5_Click(object sender, EventArgs e)
         {
+            bell_1.BackColor = Color.LightSalmon;
             string sendCmd = "5";
             serialPort1.Write(sendCmd);
         }
 
         
+
+        private void pwResetBtn_Click(object sender, EventArgs e)
+        {
+            changePassword changePWevent = new changePassword();  
+
+            DialogResult dResult = changePWevent.ShowDialog();
+            if (dResult == DialogResult.OK)
+            {
+                MessageBox.Show("비밀번호 재설정 완료");
+            }
+        }
+
+
+        //주문자가 픽업완료함 주문 리스트 출력 
+        // 향후 추가 예정 
+        private void completedListBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 
 

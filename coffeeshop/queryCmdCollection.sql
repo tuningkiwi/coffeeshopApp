@@ -2,6 +2,13 @@
 select a.Id,Name,phone,grade,kor,eng from person a inner join student b on a.id=b.id;
 */
 
+CREATE TABLE [dbo].[admin_id_pw] (
+    [id]       NVARCHAR(50) NULL,
+    [password] INT        NULL
+);
+
+insert into admin_id_pw (id,password) values (N'admin',1234)
+update admin_id_pw set password=1234 where id=N'admin'
 
 CREATE TABLE [dbo].[completed_order_list] (
     [order_id]        INT           NULL,
@@ -56,9 +63,8 @@ INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES 
 INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (8, N'strawberry_latte', N'large', 6500)
 INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (9, N'blueberry_yogurt', N'small', 5500)
 INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (10, N'blueberry_yogurt', N'large', 6000)
-INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (11, N'blueberry_yogurt', N'small', 5500)
-INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (12, N'vanila_latte', N'small', 5500)
-INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (13, N'vanila_latte', N'large', 6000)
+INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (11, N'vanila_latte', N'small', 5500)
+INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (12, N'vanila_latte', N'large', 6000)
 
 
 
