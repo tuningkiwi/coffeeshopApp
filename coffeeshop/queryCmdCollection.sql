@@ -132,7 +132,7 @@ select * from current_order_list;
 insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [hot_cold],[quantity])
     select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from current_order_list;
 
-insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, quantity from current_order_list;
+insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list;
 
 delete from current_order_list;
 
