@@ -82,7 +82,7 @@ namespace coffeeshop
         private void subtract_Click(object sender, EventArgs e)
         {
 
-            if (subOrder.quantity > 0)
+            if (subOrder.quantity > 1)
             {
                 subOrder.quantity--;
                 countLabel.Text = subOrder.quantity.ToString();
