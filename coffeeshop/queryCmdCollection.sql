@@ -150,6 +150,14 @@ select * from current_order_list;
 insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) 
     select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list;
 
+/* waiting_order_list >> copy >> completed_order_list */
+insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity) 
+    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list
+
+select *, (it.price*quantity) as total_price 
+from completed_order_list com INNER JOIN  item_price it
+on com.menu_id=it.menu_id
+
 
 -------------
 /*item_price[메뉴별 가격 테이블] 제외하고 데이터 삭제 */

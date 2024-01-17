@@ -15,20 +15,20 @@ using System.Windows.Forms;
 
 namespace coffeeshop
 {
-
+    public enum showList { waiting_list, completed_list };
 
     public partial class adminSec : Form
     {
         //Form1 frm = new Form1();
 
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
         //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\kioskData.mdf;Integrated Security=True;Connect Timeout=30";
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
 
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
-       
+
         public adminSec(string userId)
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace coffeeshop
             sqlConnect.Open();
             sqlCommand.Connection = sqlConnect;
 
-            
+
             idWelcomeLb.Text = $"{userId}님, 환영합니다";
 
             bell_1.Visible = false;
@@ -56,15 +56,32 @@ namespace coffeeshop
 
             string cmd = "select * from waiting_order_list ";
             //frm.orderListShow(sender, e, cmd, dataGridView_admin);
-            orderListShow(sender, e, cmd, dataGridView_admin);
+            orderListShow(showList.waiting_list, cmd, dataGridView_admin);
 
-            printTotal();
+            //처리해야할 주문자 수/ 주문잔수
+            printTotal(sender);
 
 
         }
 
+        //주문자가 픽업완료함 주문 리스트 출력 
+        // 향후 추가 예정 
+        private void completedListBtn_Click(object sender, EventArgs e)
+        {
+            string cmd = "insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity)" +
+                " select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list";
+            sqlCommand.CommandText = cmd;
+            sqlCommand.ExecuteNonQuery();
 
+            cmd = "select *, (it.price*quantity) as total_price " +
+                "from completed_order_list com INNER JOIN  item_price it " +
+                "on com.menu_id=it.menu_id";
+            orderListShow(showList.completed_list, cmd, dataGridView_admin);
 
+            //총 매출 
+            printTotal(sender);
+
+        }
 
 
         // 사장님이 주문이 완성되고, 완료 버튼을 누를 때,
@@ -75,29 +92,74 @@ namespace coffeeshop
 
             string cmd = "select * from waiting_order_list";
 
-            orderListShow(sender, e, cmd, dataGridView_admin);
-            printTotal();
+            orderListShow(showList.waiting_list, cmd, dataGridView_admin);
+            printTotal(sender);
 
         }
 
+        public void sub_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e, DataGridView _gridView)
+        {
+
+            // Ignore clicks that are not on button cells. 
+            if (e.RowIndex < 0) { return; }
+
+            if (e.ColumnIndex == _gridView.Columns["Del"].Index)
+            {
+                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
+
+                //제조 완료된 주문 항목은 completed_order_list로 이동한다 
+                string copyToCompletedOrderList = $"insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity) \r\n    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list";
+                sqlCommand.CommandText = copyToCompletedOrderList;
+                sqlCommand.ExecuteNonQuery();
+
+                //제조완료된 주문 항목은 삭제한다 
+                string quantityDel = $"delete from waiting_order_list where order_detail_id={_order_detail_id}";
+                sqlCommand.CommandText = quantityDel;
+                sqlCommand.ExecuteNonQuery();
+
+            }
+
+            printTotal(sender);
+
+        }
 
         // 매출 총액 출력 
-        public void printTotal()
+        public void printTotal(object sender)
         {
             totalSalesBtn.Font = new System.Drawing.Font("D2Coding", 24F);
 
-            sqlCommand.CommandText = "select sum(it.price*wait.quantity) as total_price from waiting_order_list wait INNER JOIN item_price it on wait.menu_id= it.menu_id";
-            SqlDataReader rdr2 = sqlCommand.ExecuteReader();
-            string strPrice = "";
-
-            while (rdr2.Read())
+            if (sender == completedListBtn)
             {
-                strPrice += rdr2["total_price"].ToString();
+                sqlCommand.CommandText = "select sum (it.price*quantity) as total_sales " +
+                    "from completed_order_list com INNER JOIN  item_price it " +
+                    "on com.menu_id=it.menu_id";
+                SqlDataReader rdr2 = sqlCommand.ExecuteReader();
+                int total_sales = 0;
+
+                while (rdr2.Read())
+                {
+                    total_sales += int.Parse(rdr2["total_sales"].ToString());
+                }
+                rdr2.Close();
+
+                totalSalesBtn.Text = $"총 매출 : {total_sales}원";
             }
-            rdr2.Close();
+            else //if (sender == waitingListBtn) 와 data grid view 상의 처리 완료 버튼  
+            {
+                sqlCommand.CommandText = "select sum(quantity) as total_cups from waiting_order_list";
+                SqlDataReader rdr2 = sqlCommand.ExecuteReader();
+                string strPrice = "";
 
-            totalSalesBtn.Text = $"총 매출 : {strPrice}원";
+                while (rdr2.Read())
+                {
+                    strPrice += rdr2["total_cups"].ToString();
+                }
+                rdr2.Close();
 
+                totalSalesBtn.Text = $"대기 중인 주문 잔 수 : {strPrice}건";
+
+            }
+    
         }
 
         ArrayList ColName = new ArrayList();
@@ -139,7 +201,7 @@ namespace coffeeshop
 
 
         // 현재 대기 중인 주문 리스트 확인 
-        public void orderListShow(object sender, EventArgs e, string cmd, DataGridView _gridView)
+        public void orderListShow(showList show, string cmd, DataGridView _gridView)
         {
 
             /*주문내역 SHOW */
@@ -152,45 +214,25 @@ namespace coffeeshop
             _gridView.Columns.Clear();
 
 
-            for (int i = 0; i < ColName.Count - 1; i++)
+            for (int i = 0; i < ColName.Count; i++)
             {
                 //추가되는 컬럼의 프로그래밍상 접근 이름, 표시되는 이름 
                 //데이터뷰에 컬럼 생성
                 string _colName = ColName[i].ToString();
                 _gridView.Columns.Add(_colName, _colName);
 
-
             }
 
-            //index 7 
-            DataGridViewButtonColumn quantityControl = new DataGridViewButtonColumn();
-            quantityControl.HeaderText = "차감";
-            quantityControl.Text = "-";
-            quantityControl.Name = "Sub";
-            quantityControl.UseColumnTextForButtonValue = true;
-            _gridView.Columns.Add(quantityControl);
+            if (show == showList.waiting_list) {
+                // 처리 완료 버튼 
+                DataGridViewButtonColumn quantityControl3 = new DataGridViewButtonColumn();
 
-            //quantity index 8 
-            string colName = ColName[7].ToString();
-            _gridView.Columns.Add(colName, colName);
-
-            //+버튼  //index 9 
-            DataGridViewButtonColumn quantityControl2 = new DataGridViewButtonColumn();
-            //quantityControl.Width =
-            quantityControl2.HeaderText = "증감";
-            quantityControl2.Text = "+";
-            quantityControl2.Name = "Add";
-            quantityControl2.UseColumnTextForButtonValue = true;
-            _gridView.Columns.Add(quantityControl2);
-
-            //x버튼 //index 10  
-            DataGridViewButtonColumn quantityControl3 = new DataGridViewButtonColumn();
-
-            quantityControl3.HeaderText = "처리완료";
-            quantityControl3.Text = "완료";
-            quantityControl3.Name = "Del";
-            quantityControl3.UseColumnTextForButtonValue = true;
-            _gridView.Columns.Add(quantityControl3);
+                quantityControl3.HeaderText = "처리완료";
+                quantityControl3.Text = "완료";
+                quantityControl3.Name = "Del";
+                quantityControl3.UseColumnTextForButtonValue = true;
+                _gridView.Columns.Add(quantityControl3);
+            }
 
 
             //데이터 그리드 row column 크기 조정 불가 
@@ -223,63 +265,17 @@ namespace coffeeshop
                 int nRow = _gridView.Rows.Add();
 
                 object[] row = result[i];
-                for (int j = 0; j < row.Count() - 1; j++)
+                for (int j = 0; j < row.Count(); j++)
                 {
                     _gridView.Rows[nRow].Cells[j].Value = row[j];
 
                 }
-                //quantity 
-                _gridView.Rows[nRow].Cells[8].Value = row[7];
-            }
-
-        }
-
-        public void sub_dataGridView_CellClick(object sender, DataGridViewCellEventArgs e, DataGridView _gridView)
-        {
-
-            // Ignore clicks that are not on button cells. 
-            if (e.RowIndex < 0) { return; }
-
-            //+버튼 눌렀을 때 update 
-            if (e.ColumnIndex == _gridView.Columns["Add"].Index)
-            {//6번 
-                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
-
-                string quantityAdd = $"update waiting_order_list set quantity=quantity+1 " +
-                    $"where order_detail_id={_order_detail_id}";
-                sqlCommand.CommandText = quantityAdd;
-                sqlCommand.ExecuteNonQuery();
-
-            }//- 버튼 눌렀을 때 update 
-            else if (e.ColumnIndex == _gridView.Columns["Sub"].Index)
-            {
-                int _quantity = (int)_gridView[8, e.RowIndex].Value;
-                if (_quantity == 1) { return; }//0으로가면 안됨 
-                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
-
-                string quantityAdd = $"update waiting_order_list set quantity=quantity-1 " +
-                    $"where order_detail_id={_order_detail_id}";
-                sqlCommand.CommandText = quantityAdd;
-                sqlCommand.ExecuteNonQuery();
-
 
             }
-            else if (e.ColumnIndex == _gridView.Columns["Del"].Index)
-            {
-                Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
-
-                string quantityDel = $"delete from waiting_order_list where order_detail_id={_order_detail_id}";
-                sqlCommand.CommandText = quantityDel;
-                sqlCommand.ExecuteNonQuery();
-
-            }
-
-            printTotal();
 
         }
 
         string StrComm = "";
-
         void OpenPort()
         {
             serialPort1.Open();
@@ -424,12 +420,7 @@ namespace coffeeshop
         }
 
 
-        //주문자가 픽업완료함 주문 리스트 출력 
-        // 향후 추가 예정 
-        private void completedListBtn_Click(object sender, EventArgs e)
-        {
-            
-        }
+
     }
 
 
