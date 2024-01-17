@@ -60,7 +60,11 @@ namespace coffeeshop
                 textBox2.Visible = true;
                 confirmBtn.Visible = false;
                 resetBtn.Visible = true;
-                    
+
+            }
+            else {
+
+                MessageBox.Show("잘못된 비밀번호 입니다\r\n 재입력하세요");
             }
                 
         }

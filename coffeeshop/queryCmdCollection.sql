@@ -1,6 +1,8 @@
-﻿/*
-select a.Id,Name,phone,grade,kor,eng from person a inner join student b on a.id=b.id;
-*/
+﻿/**********************************
+
+테이블 생성
+
+**********************************/
 
 CREATE TABLE [dbo].[admin_id_pw] (
     [id]       NVARCHAR(50) NULL,
@@ -52,6 +54,12 @@ CREATE TABLE [dbo].[waiting_order_list] (
 );
 
 
+/**********************************
+
+메뉴 이름, 사이즈, 항목별 가격 등록 
+
+**********************************/
+
 /*메뉴id별 가격 데이터 */
 INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (1, N'americano', N'small', 4500)
 INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES (2, N'americano', N'large', 5000)
@@ -68,10 +76,14 @@ INSERT INTO [dbo].[item_price] ([menu_id], [menu_name], [size], [price]) VALUES 
 
 
 
+/**********************************
+
+주문자가 주문 세부사항을 선택완료 할 때마다 Current_order_list에 insert
+
+**********************************/
 
 
-/*주문자가 주문 세부사항을 선택완료 할 때마다 Current_order_list에 insert*/
-/*데이터 삽입 current_order_list*/
+/* 주문데이터 삽입 예시문 */
 INSERT INTO [dbo].[current_order_list] 
 ([order_id], [order_detail_id], [take_out_in], [menu_name],[hot_cold],[size],[quantity]) 
 VALUES (1000,1,N'OUT',N'americano',N'cold',N'small',3)
@@ -135,16 +147,12 @@ update current_order_list set menu_id=it.menu_id
 select * from current_order_list; 
 
 /*Current_order_list >>copy>>>Waiting_order_list  이후 current_order_list clear*/
-insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [hot_cold],[quantity])
-    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from current_order_list;
-
-insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list;
-
-delete from current_order_list;
+insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) 
+    select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list;
 
 
 -------------
-/*item_price 제외하고 삭제 */
+/*item_price[메뉴별 가격 테이블] 제외하고 데이터 삭제 */
 
 delete from completed_order_list;
 delete from current_order_list;
@@ -154,42 +162,10 @@ delete from waiting_order_list;
 
 /***************
    관리자모드 
-****************/
+***************/
 
-/*관리자 모드에서, Waiting_order_list select, 완료된 주문항목 delete 및 completed_order_list로 이동 */
-/*장바구니 처리랑 같음 )
+/*대기 주문 확인하기 */
+select * from waiting_order_list
 
-
-
-
-
-            ////ROW, COLUMN 크기 자동 조정 
-            //// Resize the master DataGridView columns to fit the newly loaded data.
-            //dataGridView1.AutoResizeColumns();
-            //dataGridView1.AutoResizeRows();
-            //// Configure the details DataGridView so that its columns automatically
-            //// adjust their widths when the data changes.
-            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            //dataGridView1.AutoSizeRowsMode =DataGridViewAutoSizeRowsMode.AllCells;
-
-            //사용자 조정, 자동 조정 close 
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode =
-                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.RowHeadersWidthSizeMode =
-                DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridView1.ReadOnly = true;
-
-            dataGridView1.Columns[2].Width = 200;
-
-            //for (int i = 0; i < dataGridView1.Columns.Count; i++)
-            //{
-            //    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            //    dataGridView1.Columns[i].Resizable = DataGridViewTriState.False;
-            //    dataGridView1.Columns[i].ReadOnly = true;
-            //    dataGridView1.Columns[i].Width = 200;
-            //}
-
-            //dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+/*총 매출 출력 */
+select sum(it.price*wait.quantity) as total_price from waiting_order_list wait INNER JOIN item_price it on wait.menu_id= it.menu_id

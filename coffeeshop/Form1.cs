@@ -25,9 +25,12 @@ namespace coffeeshop
     public partial class Form1 : Form
     {
 
+
+        //List<OrderData> totalOrder; 미사용 변수
+        
         //주문데이터 저장 변수 
-        List<OrderData> totalOrder;
         OrderData orderData;
+        
         //주문ID(주문자 별로 발생) 주문detailID(메뉴 별로 발생)
         private static int s_orderIDSeed = 1000;
 
@@ -68,7 +71,7 @@ namespace coffeeshop
         {
             orderData = new OrderData(s_orderIDSeed, flag_increase_seed.Yes);
             //결제하기 됐을 때 , s_orderIDSeed++;
-            totalOrder = new List<OrderData>();
+            //totalOrder = new List<OrderData>();
             orderTabCtrl.SelectedTab = takeOutTab;
         }
 
@@ -140,15 +143,15 @@ namespace coffeeshop
 
 
         //(현재 사용 안함) 주문 내역 이름 순 정렬 함수 
-        private void overlappingMenusAreCombined()
-        {
+        //private void overlappingMenusAreCombined()
+        //{
 
-            //이름순 정렬 
-            totalOrder.Sort(delegate (OrderData x, OrderData y)
-            {
-                return x.menuName.CompareTo(y.menuName);
-            });
-        }
+        //    //이름순 정렬 
+        //    totalOrder.Sort(delegate (OrderData x, OrderData y)
+        //    {
+        //        return x.menuName.CompareTo(y.menuName);
+        //    });
+        //}
 
 
         /***************************************/
