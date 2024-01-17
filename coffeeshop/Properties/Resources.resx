@@ -127,6 +127,9 @@
   <data name="latte" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resource\latte.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="menu_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\menu_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="payQR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resource\payQR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

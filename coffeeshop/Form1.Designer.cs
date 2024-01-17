@@ -32,10 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.orderTabCtrl = new System.Windows.Forms.TabControl();
             this.welcomeTab = new System.Windows.Forms.TabPage();
-            this.welcomeImgButton = new System.Windows.Forms.Button();
-            this.takeOutTab = new System.Windows.Forms.TabPage();
-            this.toGoBtn = new System.Windows.Forms.Button();
-            this.forHereBtn = new System.Windows.Forms.Button();
             this.menuTab = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,18 +42,25 @@
             this.menuListLb = new System.Windows.Forms.Label();
             this.menu_cart = new System.Windows.Forms.Button();
             this.goToBegin = new System.Windows.Forms.Button();
-            this.blueyogurtBtn = new System.Windows.Forms.Button();
-            this.royalBtn = new System.Windows.Forms.Button();
-            this.strawberrylatteBtn = new System.Windows.Forms.Button();
-            this.vlaBtn = new System.Windows.Forms.Button();
-            this.latBtn = new System.Windows.Forms.Button();
-            this.ameBtn = new System.Windows.Forms.Button();
             this.cartTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cart_cancelBtn = new System.Windows.Forms.Button();
             this.paymentBtn = new System.Windows.Forms.Button();
             this.totalCountLb = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.welcomeImgButton = new System.Windows.Forms.Button();
+            this.takeOutTab = new System.Windows.Forms.TabPage();
+            this.toGoBtn = new System.Windows.Forms.Button();
+            this.forHereBtn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.blueyogurtBtn = new System.Windows.Forms.Button();
+            this.royalBtn = new System.Windows.Forms.Button();
+            this.strawberrylatteBtn = new System.Windows.Forms.Button();
+            this.vlaBtn = new System.Windows.Forms.Button();
+            this.latBtn = new System.Windows.Forms.Button();
+            this.ameBtn = new System.Windows.Forms.Button();
             this.payTab = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.payCompleted = new System.Windows.Forms.Button();
@@ -74,11 +77,8 @@
             this.pwBox = new System.Windows.Forms.TextBox();
             this.idBox = new System.Windows.Forms.TextBox();
             this.adminLogin = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.orderTabCtrl.SuspendLayout();
             this.welcomeTab.SuspendLayout();
-            this.takeOutTab.SuspendLayout();
             this.menuTab.SuspendLayout();
             this.cartTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -86,6 +86,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.takeOutTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.payTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.orderCompletedTab.SuspendLayout();
@@ -120,58 +122,10 @@
             this.welcomeTab.Text = "웰컴";
             this.welcomeTab.UseVisualStyleBackColor = true;
             // 
-            // welcomeImgButton
-            // 
-            this.welcomeImgButton.AutoSize = true;
-            this.welcomeImgButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("welcomeImgButton.BackgroundImage")));
-            this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.welcomeImgButton.Location = new System.Drawing.Point(3, 3);
-            this.welcomeImgButton.Name = "welcomeImgButton";
-            this.welcomeImgButton.Size = new System.Drawing.Size(1890, 1009);
-            this.welcomeImgButton.TabIndex = 0;
-            this.welcomeImgButton.UseVisualStyleBackColor = true;
-            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgBtn_Click);
-            // 
-            // takeOutTab
-            // 
-            this.takeOutTab.BackgroundImage = global::coffeeshop.Properties.Resources.yd_background;
-            this.takeOutTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.takeOutTab.Controls.Add(this.toGoBtn);
-            this.takeOutTab.Controls.Add(this.forHereBtn);
-            this.takeOutTab.Location = new System.Drawing.Point(4, 22);
-            this.takeOutTab.Name = "takeOutTab";
-            this.takeOutTab.Padding = new System.Windows.Forms.Padding(3);
-            this.takeOutTab.Size = new System.Drawing.Size(1896, 1015);
-            this.takeOutTab.TabIndex = 1;
-            this.takeOutTab.Text = "테이크아웃/인";
-            this.takeOutTab.UseVisualStyleBackColor = true;
-            // 
-            // toGoBtn
-            // 
-            this.toGoBtn.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toGoBtn.Location = new System.Drawing.Point(1169, 406);
-            this.toGoBtn.Name = "toGoBtn";
-            this.toGoBtn.Size = new System.Drawing.Size(418, 401);
-            this.toGoBtn.TabIndex = 1;
-            this.toGoBtn.Text = "포장하기";
-            this.toGoBtn.UseVisualStyleBackColor = true;
-            this.toGoBtn.Click += new System.EventHandler(this.toGoBtn_Click);
-            // 
-            // forHereBtn
-            // 
-            this.forHereBtn.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.forHereBtn.Location = new System.Drawing.Point(359, 406);
-            this.forHereBtn.Name = "forHereBtn";
-            this.forHereBtn.Size = new System.Drawing.Size(418, 401);
-            this.forHereBtn.TabIndex = 0;
-            this.forHereBtn.Text = "먹고가기";
-            this.forHereBtn.UseVisualStyleBackColor = true;
-            this.forHereBtn.Click += new System.EventHandler(this.forHereBtn_Click);
-            // 
             // menuTab
             // 
             this.menuTab.AutoScroll = true;
+            this.menuTab.Controls.Add(this.pictureBox2);
             this.menuTab.Controls.Add(this.label4);
             this.menuTab.Controls.Add(this.label3);
             this.menuTab.Controls.Add(this.label2);
@@ -294,78 +248,6 @@
             this.goToBegin.UseVisualStyleBackColor = false;
             this.goToBegin.Click += new System.EventHandler(this.goToBegin_Click);
             // 
-            // blueyogurtBtn
-            // 
-            this.blueyogurtBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.blueyogurtBtn.Image = global::coffeeshop.Properties.Resources.bluberryyogurt;
-            this.blueyogurtBtn.Location = new System.Drawing.Point(1046, 67);
-            this.blueyogurtBtn.Name = "blueyogurtBtn";
-            this.blueyogurtBtn.Size = new System.Drawing.Size(193, 267);
-            this.blueyogurtBtn.TabIndex = 8;
-            this.blueyogurtBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.blueyogurtBtn.UseVisualStyleBackColor = true;
-            this.blueyogurtBtn.Click += new System.EventHandler(this.blueyogurtBtn_Click);
-            // 
-            // royalBtn
-            // 
-            this.royalBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.royalBtn.Image = global::coffeeshop.Properties.Resources.roaylmilktea;
-            this.royalBtn.Location = new System.Drawing.Point(657, 67);
-            this.royalBtn.Name = "royalBtn";
-            this.royalBtn.Size = new System.Drawing.Size(193, 267);
-            this.royalBtn.TabIndex = 7;
-            this.royalBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.royalBtn.UseVisualStyleBackColor = true;
-            this.royalBtn.Click += new System.EventHandler(this.royalBtn_Click);
-            // 
-            // strawberrylatteBtn
-            // 
-            this.strawberrylatteBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.strawberrylatteBtn.Image = global::coffeeshop.Properties.Resources.strawberrylatte;
-            this.strawberrylatteBtn.Location = new System.Drawing.Point(851, 67);
-            this.strawberrylatteBtn.Name = "strawberrylatteBtn";
-            this.strawberrylatteBtn.Size = new System.Drawing.Size(193, 267);
-            this.strawberrylatteBtn.TabIndex = 6;
-            this.strawberrylatteBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.strawberrylatteBtn.UseVisualStyleBackColor = true;
-            this.strawberrylatteBtn.Click += new System.EventHandler(this.strawberrylatteBtn_Click);
-            // 
-            // vlaBtn
-            // 
-            this.vlaBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.vlaBtn.Image = global::coffeeshop.Properties.Resources.vanilalatte;
-            this.vlaBtn.Location = new System.Drawing.Point(462, 67);
-            this.vlaBtn.Name = "vlaBtn";
-            this.vlaBtn.Size = new System.Drawing.Size(193, 267);
-            this.vlaBtn.TabIndex = 2;
-            this.vlaBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.vlaBtn.UseVisualStyleBackColor = true;
-            this.vlaBtn.Click += new System.EventHandler(this.vlaBtn_Click);
-            // 
-            // latBtn
-            // 
-            this.latBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.latBtn.Image = global::coffeeshop.Properties.Resources.latte;
-            this.latBtn.Location = new System.Drawing.Point(267, 67);
-            this.latBtn.Name = "latBtn";
-            this.latBtn.Size = new System.Drawing.Size(193, 267);
-            this.latBtn.TabIndex = 1;
-            this.latBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.latBtn.UseVisualStyleBackColor = true;
-            this.latBtn.Click += new System.EventHandler(this.latBtn_Click);
-            // 
-            // ameBtn
-            // 
-            this.ameBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ameBtn.Image = global::coffeeshop.Properties.Resources.americano;
-            this.ameBtn.Location = new System.Drawing.Point(73, 67);
-            this.ameBtn.Name = "ameBtn";
-            this.ameBtn.Size = new System.Drawing.Size(193, 267);
-            this.ameBtn.TabIndex = 0;
-            this.ameBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ameBtn.UseVisualStyleBackColor = true;
-            this.ameBtn.Click += new System.EventHandler(this.ameBtn_Click);
-            // 
             // cartTab
             // 
             this.cartTab.Controls.Add(this.splitContainer1);
@@ -448,6 +330,142 @@
             this.totalCountLb.Size = new System.Drawing.Size(219, 24);
             this.totalCountLb.TabIndex = 1;
             this.totalCountLb.Text = "총     0개/총     0원";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // welcomeImgButton
+            // 
+            this.welcomeImgButton.AutoSize = true;
+            this.welcomeImgButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("welcomeImgButton.BackgroundImage")));
+            this.welcomeImgButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeImgButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.welcomeImgButton.Location = new System.Drawing.Point(3, 3);
+            this.welcomeImgButton.Name = "welcomeImgButton";
+            this.welcomeImgButton.Size = new System.Drawing.Size(1890, 1009);
+            this.welcomeImgButton.TabIndex = 0;
+            this.welcomeImgButton.UseVisualStyleBackColor = true;
+            this.welcomeImgButton.Click += new System.EventHandler(this.welcomeImgBtn_Click);
+            // 
+            // takeOutTab
+            // 
+            this.takeOutTab.BackgroundImage = global::coffeeshop.Properties.Resources.yd_background;
+            this.takeOutTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.takeOutTab.Controls.Add(this.toGoBtn);
+            this.takeOutTab.Controls.Add(this.forHereBtn);
+            this.takeOutTab.Location = new System.Drawing.Point(4, 22);
+            this.takeOutTab.Name = "takeOutTab";
+            this.takeOutTab.Padding = new System.Windows.Forms.Padding(3);
+            this.takeOutTab.Size = new System.Drawing.Size(1896, 1015);
+            this.takeOutTab.TabIndex = 1;
+            this.takeOutTab.Text = "테이크아웃/인";
+            this.takeOutTab.UseVisualStyleBackColor = true;
+            // 
+            // toGoBtn
+            // 
+            this.toGoBtn.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toGoBtn.Location = new System.Drawing.Point(1169, 406);
+            this.toGoBtn.Name = "toGoBtn";
+            this.toGoBtn.Size = new System.Drawing.Size(418, 401);
+            this.toGoBtn.TabIndex = 1;
+            this.toGoBtn.Text = "포장하기";
+            this.toGoBtn.UseVisualStyleBackColor = true;
+            this.toGoBtn.Click += new System.EventHandler(this.toGoBtn_Click);
+            // 
+            // forHereBtn
+            // 
+            this.forHereBtn.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forHereBtn.Location = new System.Drawing.Point(359, 406);
+            this.forHereBtn.Name = "forHereBtn";
+            this.forHereBtn.Size = new System.Drawing.Size(418, 401);
+            this.forHereBtn.TabIndex = 0;
+            this.forHereBtn.Text = "먹고가기";
+            this.forHereBtn.UseVisualStyleBackColor = true;
+            this.forHereBtn.Click += new System.EventHandler(this.forHereBtn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::coffeeshop.Properties.Resources.menu_background;
+            this.pictureBox2.Location = new System.Drawing.Point(1292, -44);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(601, 1051);
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
+            // 
+            // blueyogurtBtn
+            // 
+            this.blueyogurtBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.blueyogurtBtn.Image = global::coffeeshop.Properties.Resources.bluberryyogurt;
+            this.blueyogurtBtn.Location = new System.Drawing.Point(1046, 67);
+            this.blueyogurtBtn.Name = "blueyogurtBtn";
+            this.blueyogurtBtn.Size = new System.Drawing.Size(193, 267);
+            this.blueyogurtBtn.TabIndex = 8;
+            this.blueyogurtBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.blueyogurtBtn.UseVisualStyleBackColor = true;
+            this.blueyogurtBtn.Click += new System.EventHandler(this.blueyogurtBtn_Click);
+            // 
+            // royalBtn
+            // 
+            this.royalBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.royalBtn.Image = global::coffeeshop.Properties.Resources.roaylmilktea;
+            this.royalBtn.Location = new System.Drawing.Point(657, 67);
+            this.royalBtn.Name = "royalBtn";
+            this.royalBtn.Size = new System.Drawing.Size(193, 267);
+            this.royalBtn.TabIndex = 7;
+            this.royalBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.royalBtn.UseVisualStyleBackColor = true;
+            this.royalBtn.Click += new System.EventHandler(this.royalBtn_Click);
+            // 
+            // strawberrylatteBtn
+            // 
+            this.strawberrylatteBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.strawberrylatteBtn.Image = global::coffeeshop.Properties.Resources.strawberrylatte;
+            this.strawberrylatteBtn.Location = new System.Drawing.Point(851, 67);
+            this.strawberrylatteBtn.Name = "strawberrylatteBtn";
+            this.strawberrylatteBtn.Size = new System.Drawing.Size(193, 267);
+            this.strawberrylatteBtn.TabIndex = 6;
+            this.strawberrylatteBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.strawberrylatteBtn.UseVisualStyleBackColor = true;
+            this.strawberrylatteBtn.Click += new System.EventHandler(this.strawberrylatteBtn_Click);
+            // 
+            // vlaBtn
+            // 
+            this.vlaBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.vlaBtn.Image = global::coffeeshop.Properties.Resources.vanilalatte;
+            this.vlaBtn.Location = new System.Drawing.Point(462, 67);
+            this.vlaBtn.Name = "vlaBtn";
+            this.vlaBtn.Size = new System.Drawing.Size(193, 267);
+            this.vlaBtn.TabIndex = 2;
+            this.vlaBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.vlaBtn.UseVisualStyleBackColor = true;
+            this.vlaBtn.Click += new System.EventHandler(this.vlaBtn_Click);
+            // 
+            // latBtn
+            // 
+            this.latBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.latBtn.Image = global::coffeeshop.Properties.Resources.latte;
+            this.latBtn.Location = new System.Drawing.Point(267, 67);
+            this.latBtn.Name = "latBtn";
+            this.latBtn.Size = new System.Drawing.Size(193, 267);
+            this.latBtn.TabIndex = 1;
+            this.latBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.latBtn.UseVisualStyleBackColor = true;
+            this.latBtn.Click += new System.EventHandler(this.latBtn_Click);
+            // 
+            // ameBtn
+            // 
+            this.ameBtn.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ameBtn.Image = global::coffeeshop.Properties.Resources.americano;
+            this.ameBtn.Location = new System.Drawing.Point(73, 67);
+            this.ameBtn.Name = "ameBtn";
+            this.ameBtn.Size = new System.Drawing.Size(193, 267);
+            this.ameBtn.TabIndex = 0;
+            this.ameBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.ameBtn.UseVisualStyleBackColor = true;
+            this.ameBtn.Click += new System.EventHandler(this.ameBtn_Click);
             // 
             // payTab
             // 
@@ -625,12 +643,6 @@
             this.adminLogin.UseVisualStyleBackColor = true;
             this.adminLogin.Click += new System.EventHandler(this.adminLogin_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -644,7 +656,6 @@
             this.orderTabCtrl.ResumeLayout(false);
             this.welcomeTab.ResumeLayout(false);
             this.welcomeTab.PerformLayout();
-            this.takeOutTab.ResumeLayout(false);
             this.menuTab.ResumeLayout(false);
             this.menuTab.PerformLayout();
             this.cartTab.ResumeLayout(false);
@@ -654,6 +665,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.takeOutTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.payTab.ResumeLayout(false);
             this.payTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -713,6 +726,7 @@
         private System.Windows.Forms.TextBox idBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label idLB;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
