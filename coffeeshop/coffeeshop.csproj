@@ -144,5 +144,11 @@
   <ItemGroup>
     <None Include="resource\PayQR2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\yd_background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

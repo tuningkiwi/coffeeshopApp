@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[admin_id_pw] (
 );
 
 insert into admin_id_pw (id,password) values (N'admin',1234)
-update admin_id_pw set password=1234 where id=N'admin'
+/*update admin_id_pw set password=1234 where id=N'admin'*/
 
 CREATE TABLE [dbo].[completed_order_list] (
     [order_id]        INT           NULL,

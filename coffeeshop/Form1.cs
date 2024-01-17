@@ -32,8 +32,9 @@ namespace coffeeshop
         private static int s_orderIDSeed = 1000;
 
         //DB연결 
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
-
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\kioskData.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
@@ -271,7 +272,9 @@ namespace coffeeshop
             return sb;
         }
 
-
+        /***************************************/
+        //         장바구니                    //
+        /***************************************/
         //메뉴창에서 주문 선택 완료후, 장바구니 클릭시 구동 
         private void menu_cart_Click(object sender, EventArgs e)
         {
@@ -351,9 +354,29 @@ namespace coffeeshop
         //           취소하기                //
         /*************************************/
 
+        //취소하기를 누르거나 새로운 주문자가 나타났을 때, 데이터 클리어 
+        private void dataClear() {
+            //현재 주문 리스트 테이블 데이터 초기화 
+            //새로운 주문자의 주문을 받기 위해서
+            sqlCommand.CommandText = $"delete from current_order_list";
+            sqlCommand.ExecuteNonQuery();
+
+            menuListLb.Text = "주문내역";
+            totalCountLb.Text = "총      0개/ 총      0원";
+            pay_priceLb.Text = "총      0개/ 총      0원";
+
+            //dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+
+        }
+
         //메뉴창에서  취소하기 
         private void goToBegin_Click(object sender, EventArgs e)
         {
+            //s_orderIDSeed--;
+            //delete current_data_list  클리어 
+            dataClear();
             orderTabCtrl.SelectedTab = welcomeTab;
         }
 
@@ -361,6 +384,8 @@ namespace coffeeshop
         //장바구니에서 취소하면, 처음 화면으로 돌아가고 데이터 초기화 
         private void cart_cancelBtn_Click(object sender, EventArgs e)
         {
+            //s_orderIDSeed--;
+            dataClear();
             orderTabCtrl.SelectedTab = welcomeTab;
 
             //sql data delete 
@@ -371,9 +396,15 @@ namespace coffeeshop
         //결제창에서 취소하기
         private void pay_CancelBtn_Click(object sender, EventArgs e)
         {
+            //s_orderIDSeed--;
+            dataClear();
             orderTabCtrl.SelectedTab = welcomeTab;
         }
 
+
+        /******************************************/
+        //     주문자 최종 결제 완료                 //
+        /*************************************/
 
 
         //주문자가 결제 완료 버튼 누를 경우,
