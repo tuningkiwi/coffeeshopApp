@@ -380,28 +380,28 @@ namespace coffeeshop
 
         private void bell_2_Click(object sender, EventArgs e)
         {
-            bell_1.BackColor = Color.LightSalmon;
+            bell_2.BackColor = Color.LightSalmon;
             string sendCmd = "2";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_3_Click(object sender, EventArgs e)
         {
-            bell_1.BackColor = Color.LightSalmon;
+            bell_3.BackColor = Color.LightSalmon;
             string sendCmd = "3";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_4_Click(object sender, EventArgs e)
         {
-            bell_1.BackColor = Color.LightSalmon;
+            bell_4.BackColor = Color.LightSalmon;
             string sendCmd = "4";
             serialPort1.Write(sendCmd);
         }
 
         private void bell_5_Click(object sender, EventArgs e)
         {
-            bell_1.BackColor = Color.LightSalmon;
+            bell_5.BackColor = Color.LightSalmon;
             string sendCmd = "5";
             serialPort1.Write(sendCmd);
         }
