@@ -285,50 +285,50 @@ namespace coffeeshop
         }
 
 
-        //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        //{
-        //    //read 
-        //    string str = serialPort1.ReadExisting();
-        //    AddText(str);
-        //    belltobeOff();
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            //read 
+            string str = serialPort1.ReadExisting();
+            AddText(str);
+            belltobeOff();
 
-        //}
+        }
 
 
-        //delegate void AddTextCB(string str); // C/C++의 함수 포인터 개념
-        //void AddText(string str)
-        //{
-        //    //Button stopBellNumber;
+        delegate void AddTextCB(string str); // C/C++의 함수 포인터 개념
+        void AddText(string str)
+        {
+            //Button stopBellNumber;
 
-        //    if (textBox1.InvokeRequired)
-        //    {
-        //        AddTextCB cb = new AddTextCB(AddText);
-        //        object[] arg = new object[] { str };
-        //        Invoke(cb, arg);
-        //    }
-        //    else
-        //    {
-        //        textBox1.Text += str;
+            if (bellNameLb.InvokeRequired)
+            {
+                AddTextCB cb = new AddTextCB(AddText);
+                object[] arg = new object[] { str };
+                Invoke(cb, arg);
+            }
+            else
+            {
+                bellNameLb.Text += str;
 
-        //    }
-            
-        //}
+            }
 
-        //void belltobeOff()
-        //{
-        //    //bell.BackColor = SystemColors.Control;
-        //    textBox1.Text += "iam here";
-        //    switch (textBox1.Text)
-        //    {
-        //        case "bell num = 1": bell_1.BackColor = Color.Beige; break;
-        //        case "bell num = 2": bell_2.BackColor = Color.Beige; break;
-        //        case "bell num = 3": bell_3.BackColor = Color.Beige; break;
-        //        case "bell num = 4": bell_4.BackColor = Color.Beige; break;
-        //        case "bell num = 5": bell_5.BackColor = Color.Beige; break;
+        }
 
-        //    }
+        void belltobeOff()
+        {
+            //bell.BackColor = SystemColors.Control;
+            bellNameLb.Text += "iam here";
+            switch (bellNameLb.Text)
+            {
+                case "bell num = 1": bell_1.BackColor = Color.Beige; break;
+                case "bell num = 2": bell_2.BackColor = Color.Beige; break;
+                case "bell num = 3": bell_3.BackColor = Color.Beige; break;
+                case "bell num = 4": bell_4.BackColor = Color.Beige; break;
+                case "bell num = 5": bell_5.BackColor = Color.Beige; break;
 
-        //}
+            }
+
+        }
 
 
         private void portOpenBtn_Click(object sender, EventArgs e)

@@ -45,6 +45,7 @@
             this.sbLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView_admin = new System.Windows.Forms.DataGridView();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.bellNameLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.bellNameLb);
             this.splitContainer1.Panel1.Controls.Add(this.idWelcomeLb);
             this.splitContainer1.Panel1.Controls.Add(this.pwResetBtn);
             this.splitContainer1.Panel1.Controls.Add(this.portOpenBtn);
@@ -246,6 +248,15 @@
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // bellNameLb
+            // 
+            this.bellNameLb.AutoSize = true;
+            this.bellNameLb.Location = new System.Drawing.Point(47, 173);
+            this.bellNameLb.Name = "bellNameLb";
+            this.bellNameLb.Size = new System.Drawing.Size(38, 12);
+            this.bellNameLb.TabIndex = 1;
+            this.bellNameLb.Text = "label1";
+            // 
             // adminSec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -285,5 +296,6 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button pwResetBtn;
         private System.Windows.Forms.Label idWelcomeLb;
+        private System.Windows.Forms.Label bellNameLb;
     }
 }
