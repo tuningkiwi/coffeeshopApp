@@ -34,10 +34,10 @@ namespace coffeeshop
         //주문ID(주문자 별로 발생) 주문detailID(메뉴 별로 발생)
         private static int s_orderIDSeed = 1000;
 
-        //DB연결 
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\kioskData.mdf;Integrated Security=True;Connect Timeout=30";
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
+        //학원 DB연결 
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
+       
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
         
 
 

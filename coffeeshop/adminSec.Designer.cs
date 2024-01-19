@@ -100,7 +100,7 @@
             this.pwResetBtn.AutoSize = true;
             this.pwResetBtn.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.pwResetBtn.Location = new System.Drawing.Point(1606, 124);
-            this.pwResetBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pwResetBtn.Margin = new System.Windows.Forms.Padding(2);
             this.pwResetBtn.Name = "pwResetBtn";
             this.pwResetBtn.Size = new System.Drawing.Size(172, 32);
             this.pwResetBtn.TabIndex = 1;
@@ -241,6 +241,10 @@
             this.dataGridView_admin.Size = new System.Drawing.Size(1904, 622);
             this.dataGridView_admin.TabIndex = 0;
             this.dataGridView_admin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_admin_CellClick);
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // adminSec
             // 

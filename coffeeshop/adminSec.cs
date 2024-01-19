@@ -21,9 +21,10 @@ namespace coffeeshop
     {
         //Form1 frm = new Form1();
 
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\coffeeshop\kioskData.mdf;Integrated Security=True;Connect Timeout=30";
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
+        //학원
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
+        
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
 
 
         SqlConnection sqlConnect = new SqlConnection();
@@ -284,64 +285,50 @@ namespace coffeeshop
         }
 
 
-        Button stopBellNumber;
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            //read 
-            string str = serialPort1.ReadExisting();
-            int bellNumber = int.Parse(str);
+        //private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        //{
+        //    //read 
+        //    string str = serialPort1.ReadExisting();
+        //    AddText(str);
+        //    belltobeOff();
+
+        //}
+
+
+        //delegate void AddTextCB(string str); // C/C++의 함수 포인터 개념
+        //void AddText(string str)
+        //{
+        //    //Button stopBellNumber;
+
+        //    if (textBox1.InvokeRequired)
+        //    {
+        //        AddTextCB cb = new AddTextCB(AddText);
+        //        object[] arg = new object[] { str };
+        //        Invoke(cb, arg);
+        //    }
+        //    else
+        //    {
+        //        textBox1.Text += str;
+
+        //    }
             
-            
-            switch (bellNumber)
-            {
-                case 1:
-                    stopBellNumber = bell_1;
-                    break;
-                case 2:
-                    stopBellNumber = bell_2;
-                    break;
-                case 3:
-                    stopBellNumber = bell_3;
-                    break;
-                case 4:
-                    stopBellNumber = bell_4;
-                    break;
-                case 5:
-                    stopBellNumber = bell_5;
-                    break;
-                default 
-                    : break;
+        //}
 
-            }
+        //void belltobeOff()
+        //{
+        //    //bell.BackColor = SystemColors.Control;
+        //    textBox1.Text += "iam here";
+        //    switch (textBox1.Text)
+        //    {
+        //        case "bell num = 1": bell_1.BackColor = Color.Beige; break;
+        //        case "bell num = 2": bell_2.BackColor = Color.Beige; break;
+        //        case "bell num = 3": bell_3.BackColor = Color.Beige; break;
+        //        case "bell num = 4": bell_4.BackColor = Color.Beige; break;
+        //        case "bell num = 5": bell_5.BackColor = Color.Beige; break;
 
-            bell_off(str, stopBellNumber);
+        //    }
 
-            //write
-
-        }
-
-        // c/c++ 함수 포인터  \
-        // bell_off 콜백함수 
-        delegate void bell_offCB(string s, Button btnName);
-
-        //serialPort1_DataReceived에 사용되는 
-        void bell_off(string s, Button bell)
-        {
-
-            if (bell.InvokeRequired)
-            {
-                bell_offCB cb = new bell_offCB(bell_off);
-                object[] arg = new object[] { s };// arg는 argument list  
-                Invoke(cb, arg); //재호출이 된다 
-                //재호출 되는 시점에서 tbTerm.InvokeRequired = false가 되고, 
-                //else 로 넘어간다 
-            }
-            else
-            {
-                bell.BackColor = SystemColors.Control;
-            }
-
-        }
+        //}
 
 
         private void portOpenBtn_Click(object sender, EventArgs e)
