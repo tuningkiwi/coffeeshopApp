@@ -20,12 +20,10 @@ namespace coffeeshop
             string[] l = System.IO.Ports.SerialPort.GetPortNames();
             foreach (string s in l)
             {
-                comPortBox.Items.Add(s);
+                if(!(comPortBox.Items.Contains(s))) {
+                    comPortBox.Items.Add(s);
+                }
             }
-
-            //for (int i = 0; i < l.Length; i++) {
-            //    cmbPort.Items.Add(l[i]);
-            //}
 
             comPortBox.SelectedIndex = n1;
             baudRateBox.SelectedIndex = n2;

@@ -48,18 +48,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 50);
+            this.label1.Location = new System.Drawing.Point(39, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 12);
+            this.label1.Size = new System.Drawing.Size(69, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Com Port";
             // 
             // comPortBox
             // 
             this.comPortBox.FormattingEnabled = true;
-            this.comPortBox.Location = new System.Drawing.Point(112, 47);
+            this.comPortBox.Items.AddRange(new object[] {
+            "COM1"});
+            this.comPortBox.Location = new System.Drawing.Point(128, 59);
+            this.comPortBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comPortBox.Name = "comPortBox";
-            this.comPortBox.Size = new System.Drawing.Size(121, 20);
+            this.comPortBox.Size = new System.Drawing.Size(138, 23);
             this.comPortBox.TabIndex = 1;
             // 
             // baudRateBox
@@ -71,17 +74,18 @@
             "38400",
             "19200",
             "9600"});
-            this.baudRateBox.Location = new System.Drawing.Point(112, 73);
+            this.baudRateBox.Location = new System.Drawing.Point(128, 91);
+            this.baudRateBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.baudRateBox.Name = "baudRateBox";
-            this.baudRateBox.Size = new System.Drawing.Size(121, 20);
+            this.baudRateBox.Size = new System.Drawing.Size(138, 23);
             this.baudRateBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 76);
+            this.label2.Location = new System.Drawing.Point(39, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 12);
+            this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Baud Rate";
             // 
@@ -92,17 +96,18 @@
             "None",
             "Odd",
             "Even"});
-            this.parityBox.Location = new System.Drawing.Point(112, 99);
+            this.parityBox.Location = new System.Drawing.Point(128, 124);
+            this.parityBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.parityBox.Name = "parityBox";
-            this.parityBox.Size = new System.Drawing.Size(121, 20);
+            this.parityBox.Size = new System.Drawing.Size(138, 23);
             this.parityBox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 102);
+            this.label3.Location = new System.Drawing.Point(39, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 12);
+            this.label3.Size = new System.Drawing.Size(44, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "Parity";
             // 
@@ -112,17 +117,18 @@
             this.dataBitsBox.Items.AddRange(new object[] {
             "8",
             "7"});
-            this.dataBitsBox.Location = new System.Drawing.Point(112, 125);
+            this.dataBitsBox.Location = new System.Drawing.Point(128, 156);
+            this.dataBitsBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataBitsBox.Name = "dataBitsBox";
-            this.dataBitsBox.Size = new System.Drawing.Size(121, 20);
+            this.dataBitsBox.Size = new System.Drawing.Size(138, 23);
             this.dataBitsBox.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 128);
+            this.label4.Location = new System.Drawing.Point(39, 160);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 12);
+            this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Data Bits";
             // 
@@ -133,42 +139,46 @@
             "None",
             "1",
             "2"});
-            this.stopBitsBox.Location = new System.Drawing.Point(112, 151);
+            this.stopBitsBox.Location = new System.Drawing.Point(128, 189);
+            this.stopBitsBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.stopBitsBox.Name = "stopBitsBox";
-            this.stopBitsBox.Size = new System.Drawing.Size(121, 20);
+            this.stopBitsBox.Size = new System.Drawing.Size(138, 23);
             this.stopBitsBox.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 154);
+            this.label5.Location = new System.Drawing.Point(39, 192);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 12);
+            this.label5.Size = new System.Drawing.Size(68, 15);
             this.label5.TabIndex = 8;
             this.label5.Text = "Stop Bits";
             // 
             // statusBar
             // 
+            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sbLabel1});
-            this.statusBar.Location = new System.Drawing.Point(0, 238);
+            this.statusBar.Location = new System.Drawing.Point(0, 299);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(258, 22);
+            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusBar.Size = new System.Drawing.Size(295, 26);
             this.statusBar.TabIndex = 10;
             this.statusBar.Text = "포트연결결과";
             // 
             // sbLabel1
             // 
             this.sbLabel1.Name = "sbLabel1";
-            this.sbLabel1.Size = new System.Drawing.Size(55, 17);
+            this.sbLabel1.Size = new System.Drawing.Size(69, 20);
             this.sbLabel1.Text = "포트연결";
             // 
             // OKbtn
             // 
             this.OKbtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OKbtn.Location = new System.Drawing.Point(146, 192);
+            this.OKbtn.Location = new System.Drawing.Point(167, 240);
+            this.OKbtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OKbtn.Name = "OKbtn";
-            this.OKbtn.Size = new System.Drawing.Size(75, 23);
+            this.OKbtn.Size = new System.Drawing.Size(86, 29);
             this.OKbtn.TabIndex = 11;
             this.OKbtn.Text = "확인";
             this.OKbtn.UseVisualStyleBackColor = true;
@@ -176,18 +186,19 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(46, 192);
+            this.button1.Location = new System.Drawing.Point(53, 240);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(86, 29);
             this.button1.TabIndex = 12;
             this.button1.Text = "취소";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // termConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(258, 260);
+            this.ClientSize = new System.Drawing.Size(295, 325);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.OKbtn);
             this.Controls.Add(this.statusBar);
@@ -201,6 +212,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comPortBox);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "termConfig";
             this.Text = "통신파라미터설정";
             this.statusBar.ResumeLayout(false);

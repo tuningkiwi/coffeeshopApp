@@ -35,12 +35,8 @@ namespace coffeeshop
         private static int s_orderIDSeed = 1000;
 
         //학원 DB연결 
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
-       
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
-        
-
-
+        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp2\code\coffeeshopApp\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
 
@@ -344,7 +340,8 @@ namespace coffeeshop
                 DialogResult dResult = admin.ShowDialog();
                 if (dResult == DialogResult.OK)
                 {
-
+                    idBox.Text = string.Empty;
+                    pwBox.Text = string.Empty;  
                 }
             }
             else
