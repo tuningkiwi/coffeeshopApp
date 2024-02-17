@@ -20,16 +20,12 @@ namespace coffeeshop
     public partial class adminSec : Form
     {
         //Form1 frm = new Form1();
-
-        //학원
-        //string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp\coffeeshop\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
-        
-        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EMBEDDED\source\repos\coffeeshopApp\DBDATA.mdf;Integrated Security=True;Connect Timeout=30";
-
+        string sConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vests\source\repos\coffeeshopApp2\code\coffeeshopApp\order_list_DB.mdf;Integrated Security=True;Connect Timeout=30";
 
         SqlConnection sqlConnect = new SqlConnection();
         SqlCommand sqlCommand = new SqlCommand();
 
+        bool waitListInDataGridView = true; //false: completed order list를 data grid view에서 보여줌.  
         public adminSec(string userId)
         {
             InitializeComponent();
@@ -53,6 +49,7 @@ namespace coffeeshop
         //현재 대기 중인 주문 내역을 보여준다 
         private void waitingListBtn_Click(object sender, EventArgs e)
         {
+            waitListInDataGridView = true; 
             dataGridView_admin.DefaultCellStyle.Font = new Font("D2Coding", 18);
 
             string cmd = "select * from waiting_order_list ";
@@ -66,17 +63,13 @@ namespace coffeeshop
         }
 
         //주문자가 픽업완료함 주문 리스트 출력 
-        // 향후 추가 예정 
         private void completedListBtn_Click(object sender, EventArgs e)
         {
-            string cmd = "insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity)" +
-                " select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list";
-            sqlCommand.CommandText = cmd;
-            sqlCommand.ExecuteNonQuery();
+            waitListInDataGridView = false;
 
-            cmd = "select *, (it.price*quantity) as total_price " +
+            string cmd = "select *, (it.price*quantity) as total_price " +
                 "from completed_order_list com INNER JOIN  item_price it " +
-                "on com.menu_id=it.menu_id";
+                "on com.menu_id=it.menu_id order by order_id, order_detail_id";
             orderListShow(showList.completed_list, cmd, dataGridView_admin);
 
             //총 매출 
@@ -89,6 +82,7 @@ namespace coffeeshop
         // 대기중인 주문 내역에서 삭제되고, 완료된 주문 리스트로 이동한다 
         private void dataGridView_admin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (waitListInDataGridView == false) { return; }
             sub_dataGridView_CellClick(sender, e, dataGridView_admin);
 
             string cmd = "select * from waiting_order_list";
@@ -102,26 +96,27 @@ namespace coffeeshop
         {
 
             // Ignore clicks that are not on button cells. 
-            if (e.RowIndex < 0) { return; }
-
+            //if (e.RowIndex < 0) { return; }
+            //처리 완료 버튼을 눌렀을 시
             if (e.ColumnIndex == _gridView.Columns["Del"].Index)
             {
                 Int32 _order_detail_id = (Int32)_gridView[1, e.RowIndex].Value;
+                Int32 _order_id = (Int32)_gridView[0, e.RowIndex].Value;
 
                 //제조 완료된 주문 항목은 completed_order_list로 이동한다 
-                string copyToCompletedOrderList = $"insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity) \r\n    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list";
+                string copyToCompletedOrderList = $"insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity) "+
+                    $" select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list  where order_detail_id={_order_detail_id} and order_id={_order_id}";
                 sqlCommand.CommandText = copyToCompletedOrderList;
                 sqlCommand.ExecuteNonQuery();
 
                 //제조완료된 주문 항목은 삭제한다 
-                string quantityDel = $"delete from waiting_order_list where order_detail_id={_order_detail_id}";
+                string quantityDel = $"delete from waiting_order_list where order_detail_id={_order_detail_id} and order_id={_order_id}";
                 sqlCommand.CommandText = quantityDel;
                 sqlCommand.ExecuteNonQuery();
+                printTotal(sender);
 
             }
-
-            printTotal(sender);
-
+                     
         }
 
         // 매출 총액 출력 
@@ -333,7 +328,7 @@ namespace coffeeshop
 
         private void portOpenBtn_Click(object sender, EventArgs e)
         {
-            termConfig dlg = new termConfig(2, 0, 0, 0, 1);//초기값 전달 
+            termConfig dlg = new termConfig(0, 0, 0, 0, 1);//초기값 전달 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 serialPort1.PortName = dlg.comPortBox.Text;

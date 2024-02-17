@@ -153,5 +153,14 @@
   <ItemGroup>
     <None Include="resource\menu_background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\iceamericano.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\icelatte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\icevanilalatte.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
