@@ -146,14 +146,22 @@ update current_order_list set menu_id=it.menu_id
     on cur.menu_name=it.menu_name and cur.size=it.size;
 select * from current_order_list; 
 
-/*Current_order_list >>copy>>>Waiting_order_list  이후 current_order_list clear*/
+/*Current_order_list >>copy>>>Waiting_order_list*/
 insert into waiting_order_list ([order_id], [order_detail_id], [take_out_in],[menu_id], [menu_name], [hot_cold],[size],[quantity]) 
     select order_id, order_detail_id, take_out_in, menu_id, menu_name, hot_cold, size, quantity from current_order_list;
 
+/* 결제 완료 이후 현재 주문 내역 삭제 current_order_list clear*/
+delete from waiting_order_list;
+
 /* waiting_order_list >> copy >> completed_order_list */
 insert into completed_order_list (order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity) 
-    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list
+    select order_id, order_detail_id, take_out_in, menu_id, hot_cold, quantity from waiting_order_list  
+    where order_detail_id={_order_detail_id} and order_id={_order_id};
 
+/* 제조 완료된 항목 waiting order list에서 삭제 */
+delete from waiting_order_list where order_detail_id={_order_detail_id} and order_id={_order_id}
+
+/* completed order list 처리 완료 내역 보여주기 */ 
 select *, (it.price*quantity) as total_price 
 from completed_order_list com INNER JOIN  item_price it
 on com.menu_id=it.menu_id
