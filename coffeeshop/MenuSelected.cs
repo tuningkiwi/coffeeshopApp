@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace coffeeshop
@@ -16,6 +17,7 @@ namespace coffeeshop
     public partial class menuSelected : Form
     {
         public OrderData subOrder;
+        public MenuID menuID;
         public menuSelected(MenuID mid, int orderID)
         {
             InitializeComponent();            
@@ -24,8 +26,9 @@ namespace coffeeshop
             subOrder = new OrderData(orderID, flag_increase_seed.No);//데이터 전달용 
             
             subOrder.quantity = 0;
+            menuID = mid; 
             switch (mid) { 
-                case MenuID.Ame:                   
+                case MenuID.Ame:
                     pictureBox1.Image = global::coffeeshop.Properties.Resources.americano;
                     //this.pictureBox1.ImageLocation = "0,0"; 이거 하면 안됨
                     nameLabel.Text = "아메리카노";
@@ -95,6 +98,18 @@ namespace coffeeshop
             HOT.BackColor = Color.Red;           
             subOrder.hotCold = "hot";
             COLD.BackColor = Color.LightBlue;
+            if (menuID == MenuID.Ame)
+            {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.americano;
+            }
+            else if (menuID == MenuID.Lat)
+            {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.latte;
+            }
+            else if (menuID == MenuID.Van)
+            {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.vanilalatte;
+            }
         }
 
         private void COLD_Click(object sender, EventArgs e)
@@ -102,6 +117,17 @@ namespace coffeeshop
             COLD.BackColor = Color.DodgerBlue;
             subOrder.hotCold = "cold";
             HOT.BackColor = Color.LightCoral;
+            if (menuID == MenuID.Ame)
+            {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.iceamericano;
+            }
+            else if (menuID == MenuID.Lat)
+            {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.icelatte;
+            }
+            else if (menuID == MenuID.Van) {
+                pictureBox1.Image = global::coffeeshop.Properties.Resources.icevanilalatte;
+            }
         }
 
         private void SMALL_Click(object sender, EventArgs e)
